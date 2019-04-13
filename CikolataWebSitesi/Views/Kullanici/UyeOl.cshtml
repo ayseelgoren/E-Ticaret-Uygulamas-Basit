@@ -1,0 +1,96 @@
+﻿@model CikolataWebSitesi.Models.tblKullanici
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+
+
+
+    <div class="breadcrumbs">
+        <div class="container">
+            <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+                <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Anasayfa</a></li>
+                <li class="active">Üye Ol</li>
+            </ol>
+        </div>
+    </div>
+    <!--//breadcrumbs-->
+    <!--login-->
+    <div class="login-page">
+        <div class="title-info wow fadeInUp animated" data-wow-delay=".5s">
+            <h3 class="title">ÜYE <span> OL</span></h3>
+        </div>
+        <div class="widget-shadow">
+            <div class="login-top wow fadeInUp animated" data-wow-delay=".7s">
+                <h4>Zaten üye misiniz? <a href="/Kullanici/GirisYap">  Giriş Yap »</a> </h4>
+            </div>
+            <div class="login-body">
+                <form class="wow fadeInUp animated" data-wow-delay=".7s" id="uyeForm">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    @*<label>
+                        Kullanici Tipi:
+                        @Html.DropDownList("kullaniciRolID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.kullaniciRolID, "", new { @class = "text-danger" })
+
+                    </label>
+                    <br />*@
+
+                    <label>
+                        Ad:
+                        @Html.EditorFor(model => model.kullaniciAdi, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.kullaniciAdi, "", new { @class = "text-danger" })
+
+                    </label>
+                    <br />
+
+
+                    <label>
+                        Soyad:
+                        @Html.EditorFor(model => model.kullanciSoyad, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.kullanciSoyad, "", new { @class = "text-danger" })
+
+                    </label>
+                    <br />
+                    <label>
+                        Şifre:
+                        @Html.EditorFor(model => model.kullaniciSifre, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.kullaniciSifre, "", new { @class = "text-danger" })
+
+                    </label>
+                    <br />
+                    <label>
+                        Mail:
+                        @Html.EditorFor(model => model.mail, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.mail, "", new { @class = "text-danger" })
+
+
+                    </label>
+                    <br />
+                    <label>
+                        Telefon:
+                        @Html.EditorFor(model => model.telefon, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.telefon, "", new { @class = "text-danger" })
+
+                    </label>
+
+                    <input id="uyeol" type="submit" value="ÜYE OL" class="btn btn-default" />
+                </form>
+
+            </div>
+        </div>
+    </div>
+}
+
+
+   
+

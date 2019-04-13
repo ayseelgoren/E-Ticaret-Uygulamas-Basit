@@ -1,0 +1,85 @@
+﻿@model IEnumerable<CikolataWebSitesi.Models.tblUrun>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SaticiLayout.cshtml";
+}
+
+<table class="table">
+    <tr>
+        <th>
+           Ürün Adı
+        </th>
+        <th>
+           Ürün Açıklama
+        </th>
+        <th>
+           Ürün Eklenme Tarihi
+        </th>
+        <th>
+           Durumu
+        </th>
+        <th>
+           Resim
+        </th>
+        <th>
+          Fiyat
+        </th>
+        <th>
+          Kategori Adı
+        </th>
+        <th>
+         Satıcı Adı
+        </th>
+        <th>
+          Onay
+        </th>
+        <th>
+           Stok Miktarı
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.urunAd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.urunAciklama)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.urunEklemeTarihi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.durumu)
+        </td>
+        <td>
+            <img src="/Content/images/@item.resim" width="100" height="100" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblFiyat.satisFiyati)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblKategori.kategoriAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblKullanici.kullaniciAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblPromOnay.onayID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblStok.stokMiktari)
+        </td>
+        <td>
+            <button class="item" data-toggle="tooltip" data-placement="top" title="">
+                <i class=" zmdi zmdi-mail-send">
+                    @Html.ActionLink("Detay", "Details", new { id = item.urunID })
+                </i>
+            </button>
+        </td>
+    </tr>
+}
+
+</table>

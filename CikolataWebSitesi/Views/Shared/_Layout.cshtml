@@ -1,0 +1,347 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Çikolata Bahçesi</title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Modern Shoppe Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+
+    <script src="~/Scripts/jquery-1.6.4.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.1.0.min.js"></script>
+    <script src="~/SignalR/Hubs"></script>
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+               function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--//for-mobile-apps -->
+    <!--Custom Theme files -->
+    <link href="/content/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/content/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+    <!--//Custom Theme files -->
+    <!--js-->
+    <script src="/content/js/jquery-1.11.1.min.js"></script>
+    <script src="/content/js/modernizr.custom.js"></script>
+    <!--//js-->
+    <!--cart-->
+    <script src="/content/js/simpleCart.min.js"></script>
+    <!--cart-->
+    <!--web-fonts-->
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Pompiere' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Fascinate' rel='stylesheet' type='text/css'>
+    <!--web-fonts-->
+    <!--animation-effect-->
+    <link href="content/css/animate.min.css" rel="stylesheet">
+    <script src="content/js/wow.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#btnTrigger').click();
+        });
+    </script>
+
+    <!--//end-smooth-scrolling-->
+</head>
+
+<body onscroll="test()">
+
+
+    <div class="container" style="width:%4;margin:%2">
+        <div class="modal fade" data-target="#myModal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <img src="~/Content/popup/11.jpg" height="400" width="550">
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!--header-->
+    <div class="header">
+        <div class="top-header navbar navbar-default">
+            <!--header-one-->
+            <div class="container">
+
+                <div class="nav navbar-nav wow fadeInLeft animated" data-wow-delay=".5s">
+
+                    @if (Session["kullanici"] != null)
+                    {
+                        <h4>Hoşgeldin  @Session["kullanici"].ToString()</h4>
+
+                       
+                    }
+
+
+
+                    @if (Session["kullanici"] == null)
+                    {
+                        <h2><a href="/Kullanici/UyeOl">Üye Ol </a> Ya da <a href="/Kullanici/GirisYap">Giriş Yap</a></h2>
+                    }
+                </div>
+                <div class="nav navbar-nav navbar-right social-icons wow fadeInRight animated" data-wow-delay=".5s">
+
+
+                    @if (Session["kullaniciId"] != null)
+                    {
+                        <div class="col-md-3">
+                            <a href="/Kullanici/Favori"><img src="~/content/images/favicon.png" width="20px" height="20px" /></a>
+
+                        </div>
+                    }
+                    @if (Session["kullaniciId"] == null)
+                    {
+                        <div class="col-md-3">
+                            <a href="/Kullanici/GirisYap"><img src="~/content/images/favicon.png" width="20px" height="20px" /></a>
+
+                        </div>
+                    }
+
+
+
+
+                    <div class="col-md-3">
+                        <a href="/SepetDties/Index"><img src="~/content/images/shopping-cart.png" width="20px" height="20px" /></a>
+                    </div>
+
+
+
+
+
+
+
+                    @if (Session["kullanici"] != null)
+                    {
+                        <div class="col-md-3">
+                            <a href="/Kullanici/Profil"><img src="~/Content/images/users.png" width="20px" height="20px" /></a>
+
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-3">
+                            <a href="/Kullanici/GirisYap"><img src="~/Content/images/users.png" width="20px" height="20px" /></a>
+
+                        </div>
+                    }
+
+                    @if (Session["kullanici"] != null)
+                    {<div class="col-md-3">
+                            <a href="/Kullanici/CikisYap"><img src="~/Content/images/cikis.jpg" width="20px" height="20px" /> </a>
+                        </div>
+                    }
+
+
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <div>
+
+
+                <div class="banner">
+
+                    <div class="nav navbar-nav logo wow zoomIn animated" data-wow-delay=".7s">
+                        <h1><a href="/Home/Index">ÇİKOLATA <b>BAHÇESİ</b><span class="tag">Bir çikolatadan daha fazlası... </span> </a></h1>
+                    </div>
+
+                </div>
+                <div id="menu1">
+
+
+                    <div class="top-nav navbar navbar-default">
+
+                        <!--header-three-->
+                        <div class="container">
+
+                            <nav class="navbar" role="navigation">
+                                <div class="navbar-header">
+
+                                </div>
+                                <!--navbar-header-->
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    <ul class="nav navbar-nav top-nav-info">
+                                        <li><a href="/Home/Index" class="active">ANASAYFA</a></li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">ÇİKOLATALARIMIZ<b class="caret"></b></a>
+                                            <ul class="dropdown-menu multi-column multi-column1">
+                                                <div class="row">
+                                                    <div class="col-sm-4 menu-grids menulist1">
+                                                        <h4>Özel Çikolatalar</h4>
+                                                        <ul class="multi-column-dropdown ">
+                                                            <li><a class="list" href="/Kategori/Index/1"> Doğum Günü</a></li>
+                                                            <li><a class="list" href="/Kategori/Index/2">Sevgililer Günü</a></li>
+                                                            <li><a class="list" href="/Kategori/Index/3">Anneler Günü</a></li>
+                                                            <li><a class="list" href="/Kategori/Index/4">Babalar Günü </a></li>
+                                                            <li><a class="list" href="/Kategori/Index/5">Çikolata Buketleri </a></li>
+
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-sm-4 menu-grids">
+                                                        <h4>Çikolata Ülkeleri</h4>
+                                                        <ul class="multi-column-dropdown">
+                                                            <li><a class="list" href="/Kategori/Index/6">Belçika</a></li>
+                                                            <li><a class="list" href="/Kategori/Index/7">İspanya</a></li>
+                                                            <li><a class="list" href="/Kategori/Index/8">İsviçre</a></li>
+                                                            <li><a class="list" href="/Kategori/Index/9">Meksika</a></li>
+                                                            <li><a class="list" href="/Kategori/Index/10">Fransa</a></li>
+                                                            <li><a class="list" href="/Kategori/Index/11">İngiltere</a></li>
+                                                            <li><a class="list" href="/Kategori/Index/12">Köln Almanya</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="coo-sm-4 menu-grids">
+                                                        <buttons class="btnPop" id="btnTrigger" data-toggle="modal" data-target="#myModal">
+                                                    </div>
+
+                                                    <div class="clearfix"> </div>
+
+                                                </div>
+
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">HAKKIMIZDA<b class="active"></b></a>
+                                        </li>
+
+                                        <div class="clearfix"> </div>
+                                        <!--//navbar-collapse-->
+
+                                </div>
+                                <!--//navbar-header-->
+                            </nav>
+
+                            @using (Html.BeginForm("Ara", "Home", FormMethod.Post, new { enctype = "multipart/Form-data" }))
+                            {
+
+                                <div class="clearfix"> </div>
+                                <!--//navbar-collapse-->
+                                <header class="cd-main-header">
+                                    <ul class="cd-header-buttons">
+                                        <li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
+                                    </ul> <!-- cd-header-buttons -->
+                                </header>
+                                <div id="cd-search" class="cd-search">
+                                    <form>
+                                        <input id="Ara" name="Ara" type="search" placeholder="Search...">
+                                    </form>
+
+                                </div>
+                            }
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!--//header-->
+        <!--banner-->
+        <!--//banner-->
+        <!--new-->
+        <!--//new-->
+        <!--gallery-->
+        @RenderBody();
+        <!--//gallery-->
+        <!--trend-->
+        <!--//trend-->
+        <!--footer-->
+        <div class="footer">
+            <div class="container">
+                <div class="footer-info">
+                    <div class="col-md-4 footer-grids wow fadeInUp animated" data-wow-delay=".5s">
+                        <h4 class="footer-logo"><a href="index.html">ÇİKOLATA <b>BAHÇESİ</b> <span class="tag">Bir çikolatadan daha fazlası... </span> </a></h4>
+                        <p>© 2019 Çikolata Bahçesi . All rights reserved | Design by <a href="" target="_blank">W3layouts</a></p>
+                    </div>
+
+                    <div class="col-md-4 footer-grids wow fadeInUp animated" data-wow-delay=".9s">
+                        <h3>İletişim</h3>
+                        <p>İletişime Geçmek İçin Mesaj Gönderin</p>
+                        <form id="tomail">
+                            @Html.TextBox("mesaj")
+                            <br />
+                            <a class="btn btn-danger" id="tikla">GÖNDER</a>
+                        </form>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+        <!--//footer-->
+        <!--search jQuery-->
+        <script src="/content/js/main.js"></script>
+        <!--//search jQuery-->
+        <!--smooth-scrolling-of-move-up-->
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                var defaults = {
+                    containerID: 'toTop', // fading element id
+                    containerHoverID: 'toTopHover', // fading element hover id
+                    scrollSpeed: 1200,
+                    easingType: 'linear'
+                };
+
+                $().UItoTop({ easingType: 'easeOutQuart' });
+
+            });
+        </script>
+        <!--//smooth-scrolling-of-move-up-->
+        <!--Bootstrap core JavaScript
+        ================================================== -->
+        <!--Placed at the end of the document so the pages load faster -->
+        <script src="/content/js/bootstrap.js"></script>
+</body>
+</html>
+<style>
+    .yapiskan {
+        top: 0;
+        position: fixed;
+        width: 100%;
+        z-index: 9999;
+    }
+    .btnPop{
+        border-style:none;
+        background:#ffffff;
+    }
+</style>
+<script>
+    var menu1 = document.getElementById("menu1");
+    var x = menu1.offsetTop;
+    //alert(x);
+    function test() {
+        if (scrollY >= x) {
+            menu1.classList.add("yapiskan");
+        }
+        else {
+            menu1.classList.remove("yapiskan");
+        }
+    }
+</script>
+<script>
+    $("#tikla").click(function () {
+        debugger
+        var data = $("#tomail").serialize();
+
+        $.ajax({
+            type: "POST",
+            url: "/Mail/SendMailToUser",
+            data: data,
+            success: function (responce) {
+                alert("Başarıyla Gönderildi");
+            }
+        })
+    });
+</script>

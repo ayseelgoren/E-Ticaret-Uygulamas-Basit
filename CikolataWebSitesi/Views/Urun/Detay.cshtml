@@ -1,0 +1,290 @@
+﻿@model CikolataWebSitesi.Models.tblUrun
+@{
+    ViewBag.Title = "Detay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/content/js/jquery-1.11.1.min.js"></script>
+<script>
+    $(document).ready(function myfunction() {
+        $("#sepetEkle").click(function myfunction() {
+            var uid = $(this).attr("name");
+            debugger
+            $.ajax({
+                type: "GET",
+                url: "/Urun/SepeteEkle",
+                data: { id: uid },
+                success: function myfunction() {
+                    alert("Ürün Sepetinize Eklenmiştir.  :D");
+                },
+                error: function myfunction() {
+                    alert("ürün ekleme işlemi başarısız oldu.");
+                }
+
+            });
+
+        });
+    });
+</script>
+
+<div class="single">
+    <div class="container">
+        <div class="single-info">
+            <div class="col-md-6 single-top wow fadeInLeft animated" data-wow-delay=".5s">
+                <div class="flexslider">
+                    <ul class="slides">
+
+                        <li data-thumb="~/Content/images/@Html.DisplayFor(model =>model.resim)">
+                            <div class="thumb-image"> <img src="~/Content/images/@Html.DisplayFor(model =>model.resim)" data-imagezoom="true" class="img-responsive" alt=""> </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 single-top-left simpleCart_shelfItem wow fadeInRight animated" data-wow-delay=".5s">
+                <h3> @Html.DisplayFor(model => model.urunAd)</h3>
+                <div class="single-rating">
+
+
+                </div>
+                <h6 class="item_price"> @Html.DisplayFor(model => model.tblFiyat.satisFiyati) TL</h6>
+
+                <div class="clearfix"> </div>
+                <div class="quantity">
+                    <p class="qty"> ADET :  </p><input min="1" type="number" value="1" class="item_quantity">
+                </div>
+                <div class="btn_form">
+                    <a href="#" id="sepetEkle" name="@Html.DisplayFor(model => model.urunID)" >SEPETE EKLE</a>
+                </div>
+                <div class="container">
+
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <!--collapse-tabs-->
+        <div class="collpse tabs">
+            <div class="panel-group collpse" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default wow fadeInUp animated" data-wow-delay=".5s">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Ürün Detayları
+
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            @Html.DisplayFor(model => model.urunAciklama)
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="collpse tabs">
+                    <div class="panel-group collpse" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default wow fadeInUp animated" data-wow-delay=".5s">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        İletişim
+
+                                    </a>
+                                </h4>
+                            </div>
+
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    Satıcıya Mesaj Gönder: <input type="text" placeholder="Mesaj" />
+
+
+                                    <input type="submit" value="GÖNDER" />
+
+                                </div>
+
+
+                            </div>
+                            </span>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!--//collapse -->
+            <!--related-products-->
+            <div class="related-products">
+
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+    </div>
+<style>
+    .tab {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        position: relative;
+        justify-content: center;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+
+        .tab .tab_bar {
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+        }
+
+        .tab .tab_title {
+            box-sizing: content-box;
+            display: block;
+            flex: 1;
+            text-align: center;
+            list-style: none;
+            font-size: 2.4rem;
+            height: 1em;
+            padding: .6em 0;
+            cursor: pointer;
+            max-width: 125px;
+        }
+
+        .tab a, .tab a:hover, .tab a:visited {
+            text-decoration: none;
+            color: inherit;
+        }
+
+    .tab-content:after {
+        display: table;
+        clear: both;
+    }
+
+    .tab-content {
+        display: flex;
+        position: relative;
+        left: 0;
+    }
+
+    .tab-content_page {
+        flex: 1 0 100%;
+        padding: 2em 1em;
+    }
+
+    // visual
+
+
+    .tab {
+        background-color: #FFC400;
+        box-shadow: 0px 2px 5px #ddd;
+    }
+
+    .tab .tab_bar {
+        background-color: white;
+    }
+
+    .tab .tab_title {
+        color: #424242;
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    }
+
+        .tab .tab_title.tab_title_active, .tab.tab_hover .tab_title:hover {
+            color: white;
+        }
+
+    .tab.animated .tab_title {
+        transition: color .5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .tab.animated .tab_bar {
+        transition: left .5s cubic-bezier(0.23, 1, 0.32, 1), width .5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .tab.animated + .tab-content {
+        transition: left .5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .border-box {
+        overflow: hidden;
+        border: 1px solid #FFC400;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        font-size: 10px;
+    }
+
+    section.content {
+        font-family: 'Roboto', 'Noto Sans Thai', sans-serif;
+        font-size: 1.4rem;
+        max-width: 500px;
+        margin: 0 auto;
+        overflow: hidden;
+        padding: 1em;
+    }
+
+    .border-box {
+        margin: 0 -1em;
+        font-size: 1.4rem;
+    }
+</style>
+<script>
+    $.fn.tab = function (options) {
+        var items = this;
+        $(this).each(function (k) {
+            var that = items[k];
+            console.log(that);
+            moveBar = function (tab_bar, tab_title) {
+                $(tab_bar).css({ width: $(tab_title).width() + 'px', left: $(tab_title).position().left });
+            };
+            moveContent = function (tab_content) {
+                $(tab_content).parent().css({ left: -$(tab_content).position().left });
+            };
+            moveBar($(that).find('.tab_bar'), $(that).find('.tab_title_active'));
+            if ($(that).hasClass('tab_hover')) {
+                $(that).find('.tab_title').on("mouseover", function () {
+                    moveBar($(this).parent().find('.tab_bar'), $(this));
+                });
+                $(that).on("mouseout", function () {
+                    moveBar($(this).find('.tab_bar'), $($(this).find('.tab_title_active')));
+                });
+            }
+
+            $(that).find('.tab_title').on("click", function () {
+                moveBar($(this).parent().find('.tab_bar'), $(this));
+                $(this).parent().find('.tab_title').removeClass('tab_title_active');
+                $(this).addClass('tab_title_active');
+                var tab_content = $($(this).find('a').attr('href'));
+                moveContent(tab_content);
+                return false;
+            });
+            $(window).resize(function () {
+                moveBar($(that).find('.tab_bar'), $(that).find('.tab_title_active'));
+                var tab_content = $($(that).find('.tab_title_active').find('a').attr('href'));
+                moveContent(tab_content);
+            });
+            $(window).on("orientationchange", function () {
+                moveBar($(that).find('.tab_bar'), $(that).find('.tab_title_active'));
+                var tab_content = $($(that).find('.tab_title_active').find('a').attr('href'));
+                moveContent(tab_content);
+            });
+        });
+
+
+    };
+    $('.tab[data-tab]').tab();
+</script>

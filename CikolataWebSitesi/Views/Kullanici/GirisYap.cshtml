@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "GirisYap";
+    Layout = "~/Views/shared/_Layout.cshtml";
+}
+
+
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1 animated wow fadeInUp" data-wow-delay=".5s">
+            <li><a href=""><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Anasayfa</a></li>
+            <li class="active">Giriş Yap</li>
+        </ol>
+    </div>
+</div>
+<!--//breadcrumbs-->
+<!--login-->
+<div class="login-page">
+    <div class="title-info wow fadeInUp animated" data-wow-delay=".5s">
+        <h3 class="title">GİRİŞ<span> YAP</span></h3>
+
+    </div>
+    <div class="widget-shadow">
+        <div class="login-top wow fadeInUp animated" data-wow-delay=".7s">
+            <h4> Çikolata Bahçesine Hoşgeldiniz! <br> Üye değil misiniz? <a href="/Kullanici/UyeOl">  Şimdi Üye Olun »</a> </h4>
+        </div>
+        <div class="login-body wow fadeInUp animated" data-wow-delay=".7s">
+            <form action="/Kullanici/GirisYap" method="post">
+                @*<input type="text" class="user" name="email" placeholder="Email " required="">*@
+                <input class="form-control text-box single-line" id="mail" name="mail" type="text" value="">
+                <span class="field-validation-valid text-danger" data-valmsg-for="kullaniciAdi" data-valmsg-replace="true"></span>
+                @*<input type="password" name="password" class="lock" placeholder="Şifre">*@
+
+                <input class="form-control text-box single-line" id="kullaniciSifre" name="kullaniciSifre" type="password" value="">
+                <span class="field-validation-valid text-danger" data-valmsg-for="kullaniciSifre" data-valmsg-replace="true"></span>
+
+                <input type="submit" name="Sign In" value="Giriş Yap">
+                <div class="forgot-grid">
+                    <label >
+                     
+                        @if (ViewBag.Mesaj != null)
+                        {
+                            <p style="color:red"> @ViewBag.Mesaj</p>
+                        }
+                    </label>
+                    <div class="forgot">
+                        <a href="#">Şiremi Unuttum</a>
+                    </div>
+
+                    <div class="clearfix"> </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+

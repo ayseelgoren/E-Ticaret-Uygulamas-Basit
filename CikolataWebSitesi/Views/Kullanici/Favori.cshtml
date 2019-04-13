@@ -1,0 +1,85 @@
+﻿@model IEnumerable<CikolataWebSitesi.Models.tblFavori>
+@{
+    ViewBag.Title = "Favori";
+    Layout = "~/Views/shared/_Layout.cshtml";
+}
+<script src="~/content/js/jquery-1.11.1.min.js"></script>
+<script>
+    $(document).ready(function myfunction() {
+        $(".sepetEkle").click(function myfunction() {
+            var uid = $(this).attr("name");
+            debugger
+            $.ajax({
+                type: "GET",
+                url: "/Home/SepeteEkle",
+                data: { id: uid },
+                success: function myfunction() {
+                    alert("Ürün Sepetinize Eklenmiştir.  :D");
+                },
+                error: function myfunction() {
+                    alert("ürün ekleme işlemi başarısız oldu.");
+                }
+
+            });
+
+        });
+    });
+</script>
+<div class="new">
+    <div class="container">
+        <div class="title-info wow fadeInUp animated" data-wow-delay=".5s">
+            <h3 class="title">FAVORİLER</h3>
+
+            <div class="container">
+                <div class="gallery-info">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-md-3 new-grid simpleCart_shelfItem wow flipInY animated" data-wow-delay=".5s">
+                            <div class="new-top">
+                                <a href="#"><img src="/Content/images/@item.tblUrun.resim" width="225px" height="225px" class="img-responsive" alt="" /></a>
+
+                                <div class="new-text">
+                                    <ul>
+                                        <li><a class="sepetEkle" name="@item.tblUrun.urunID" href="/SepetDties/"> SEPETE EKLE</a></li>
+                                        <li><a href="/Urun/Detay/@item.urunID">ÜRÜN DETAY </a></li>
+                                        <li><a href="/Home/Index">ÜRÜNLER </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="new-bottom">
+                                <h5>
+                                    <a class="name" href="">
+                                        @Html.DisplayFor(modelitem => item.tblUrun.urunAd)
+                                    </a>
+                                </h5>
+                                <div class="rating">
+                                    <span class="on">☆</span>
+                                    <span class="on">☆</span>
+                                    <span class="on">☆</span>
+                                    <span class="on">☆</span>
+                                    <span>☆</span>
+                                </div>
+                                <div class="ofr">
+                                    <p class="pric1"><del></del></p>
+                                    <p><span class="item_price" style="font-size:large">@Html.DisplayFor(modelitem => item.tblUrun.tblFiyat.satisFiyati) TL</span></p>
+                                </div>
+                            </div>
+
+
+                            <!--//collapse -->
+                            <!--related-products-->
+                            <div class="related-products">
+
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+
+
+            <!--//related-products-->
+        </div>
+    </div>
+</div>
+

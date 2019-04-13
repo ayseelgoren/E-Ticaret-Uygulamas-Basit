@@ -1,0 +1,56 @@
+﻿@model IEnumerable<CikolataWebSitesi.Models.tblKategori>
+@{
+    ViewBag.Title = "Index2";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div>
+    <button type="button" class="btn btn-outline-primary btn">  @Html.ActionLink("Kategori Ekle", "Create")</button>
+</div>
+<br />
+<div class="table-responsive table-responsive-data2">
+    <table class="table table-data2">
+        <thead>
+            <tr>
+                <th>Kategori Adı</th>
+                <th>Güncelle</th>
+                <th>Detay</th>
+                <th>Sil</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="tr-shadow">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.kategoriAdi)
+                    </td>
+                    <td>
+                        <button class="item" data-toggle="tooltip" data-placement="top" title="">
+                            <i class=" zmdi zmdi-mail-send">
+                                @Html.ActionLink("Detay", "Details", new { id = item.kategoriID })
+                            </i>
+                        </button>
+
+                    </td>
+                    <td>
+                        <button class="item" data-toggle="tooltip" data-placement="top" title="">
+                            <i class="zmdi zmdi-edit">
+                                @Html.ActionLink("Güncelle", "Edit", new { id = item.kategoriID })
+                            </i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="item" data-toggle="tooltip" data-placement="top" title="">
+                            <i class="zmdi zmdi-delete">
+                                @Html.ActionLink("Sil", "Delete", new { id = item.kategoriID })
+                            </i>
+                        </button>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

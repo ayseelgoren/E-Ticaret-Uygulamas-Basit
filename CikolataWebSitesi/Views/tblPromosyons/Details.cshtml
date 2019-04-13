@@ -1,0 +1,77 @@
+﻿@model CikolataWebSitesi.Models.tblPromosyon
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblPromosyon</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.promosyonAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.promosyonAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.promosyonIndirimOrani)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.promosyonIndirimOrani)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.baslamaTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.baslamaTarihi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bitisTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bitisTarihi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.promosyonResim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.promosyonResim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblKategori.kategoriAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblKategori.kategoriAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblUrun.urunAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblUrun.urunAd)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.promosyonID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

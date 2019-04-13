@@ -1,0 +1,137 @@
+﻿@model CikolataWebSitesi.Models.tblPromosyon
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>tblPromosyon</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-header">
+            <div class="col-lg-3">
+                @Html.LabelFor(model => model.urunID, "urunID", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.DropDownList("urunID", null, "Lütfen bir seçim yapınız.", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.urunID, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-lg-3">
+                @Html.LabelFor(model => model.kategoriID, "kategoriID", htmlAttributes: new { @class = "control-label col-md-1" })
+
+                @Html.DropDownList("kategoriID", null, "Lütfen bir seçim yapınız.", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.kategoriID, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-lg-3">
+                @Html.Label("Tüm Ürünler:", htmlAttributes: new { @class = "control-label" })
+                <br />
+                @Html.CheckBox("toplu")
+            </div>
+
+            <br />
+            <input type="button" class="btn btn-default" value="Seçim Yenile" id="secim" />
+        </div>
+        <hr />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.promosyonAdi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.promosyonAdi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.promosyonAdi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.promosyonIndirimOrani, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.promosyonIndirimOrani, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.promosyonIndirimOrani, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.baslamaTarihi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.baslamaTarihi, new { @type = "date", @class = "form-control datepicker" })
+                @Html.ValidationMessageFor(model => model.baslamaTarihi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.bitisTarihi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.bitisTarihi, new { @type = "date", @class = "form-control datepicker" })
+                @Html.ValidationMessageFor(model => model.bitisTarihi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.promosyonResim, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.promosyonResim, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.promosyonResim, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+<script src="~/content/js/jquery-1.11.1.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        //tarih kontrolü yapılamadı
+        //$("#baslamaTarihi").change(function () {
+        //    $("#bitisTarihi").val()
+        //})
+        $("#bitisTarihi").click(function () {
+            alert("Promosyon Bitiş Tarihini Başlama Tarihinden Büyük Seçiniz.");
+        })
+
+        $("#secim").click(function () {
+
+            $("#urunID").val("")
+            $("#kategoriID").val("")
+
+            $("#urunID").show(2000)
+            $("#kategoriID").show(2000)
+            $("#toplu").show(2000)
+
+        })
+        $("#urunID").click(function () {
+
+            $("#toplu").hide(2000)
+            $("#kategoriID").hide(2000)
+            $("#kategoriID").val("")
+
+        })
+        $("#toplu").click(function () {
+
+            $("#urunID").hide(2000)
+            $("#kategoriID").hide(2000)
+        })
+        $("#kategoriID").click(function () {
+
+            $("#urunID").hide(2000)
+            $("#toplu").hide(2000)
+            $("#urunID").val("")
+
+        })
+
+    })
+
+</script>

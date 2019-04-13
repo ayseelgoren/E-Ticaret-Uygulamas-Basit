@@ -1,0 +1,98 @@
+﻿@model CikolataWebSitesi.Models.tblUrun
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_SaticiLayout.cshtml";
+}
+
+@using (Html.BeginForm("Create", "Urun", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @*<div>
+            <button type="button" class="btn btn-outline-primary btn-lg">  @Html.ActionLink("Ürünler", "Index")</button>
+        </div>*@
+    @Html.ValidationSummary(true)
+    <div class="card">
+        <div class="card-header">
+            <strong>Ürün Ekleme</strong> Sayfası
+        </div>
+        <div class="card-body card-block">
+            <div class="form-horizontal">
+
+                <div class="form-group">
+                    Satıcı <div class="col-md-10">
+                        @Html.DropDownList("saticiID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.saticiID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    Kategori<div class="col-md-10">
+                        @Html.DropDownList("kategoriID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.kategoriID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    Ürün Adı  <div class="col-md-10">
+                        @Html.EditorFor(model => model.urunAd, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.urunAd, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    Ürün Açıklama  <div class="col-md-10">
+                        @Html.EditorFor(model => model.urunAciklama, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.urunAciklama, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    Ürün Eklenme Tarihi  <div class="col-md-10">
+                        @Html.EditorFor(model => model.urunEklemeTarihi, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                        @Html.ValidationMessageFor(model => model.urunEklemeTarihi, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.durumu,"Stokta Var",htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.durumu)
+                                @Html.ValidationMessageFor(model => model.durumu, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>*@
+
+                <div class="form-group">
+                    Fiyatı <div class="col-md-10">
+                        @Html.DropDownList("fiyatID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.tblFiyat.alisFiyati, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    Stok Adet <div class="col-md-10">
+                        @Html.DropDownList("stokID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.stokID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    Resim
+                    <div class="col-md-10">
+                        <input type="file" name="file" />
+                        @Html.ValidationMessageFor(model => model.resim, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Ürün Ekle" class="btn btn-success btn-lg" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+}

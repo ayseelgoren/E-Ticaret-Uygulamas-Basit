@@ -1,0 +1,42 @@
+﻿@model CikolataWebSitesi.Models.tblKategori
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+
+<div>
+    <button type="button" class="btn btn-outline-primary btn-lg">  @Html.ActionLink("Kategoriler", "Index2")</button>
+</div>
+<br />
+
+<div>
+    <div class="card-header">
+        <strong>Ürünü silmek istediğinize emin misiniz ?</strong>
+    </div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            <label for="text-input" class=" form-control-label">Kateogori Adı</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kategoriAdi)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-danger btn-lg" />
+        </div>
+    }
+</div>
+
+

@@ -1,0 +1,141 @@
+﻿@model CikolataWebSitesi.Models.tblKullanici
+@{
+    ViewBag.Title = "Profil";
+    Layout = "~/Views/shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.kullaniciID)
+    @Html.HiddenFor(model => model.kullaniciRolID)
+<div class="container">
+    <div class="col-lg-6">
+        <menu>
+
+            <ul>
+                <li><a class="active" href="#">Kullanıcı Bilgilerim </a></li>
+
+                <li><a href="/">Siparişlerim</a></li>
+
+                <li><a href="/Kullanici/Favori">Favorilerim</a></li>
+
+
+
+
+            </ul>
+        </menu>
+
+    </div>
+
+    <div class="col-md-5">
+        <br />
+
+        <h2>Kişisel Bilgiler</h2>
+        <hr />
+        <div class="form-group">
+
+            <div class="col-md-10">
+                Ad <br />
+                @Html.EditorFor(model => model.kullaniciAdi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.kullaniciAdi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+
+            <div class="col-md-10">
+                Soyad<br />
+                @Html.EditorFor(model => model.kullanciSoyad, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.kullanciSoyad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+
+            <div class="col-md-10">
+                Şifre
+                <br />
+                @Html.EditorFor(model => model.kullaniciSifre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.kullaniciSifre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <br />
+        <h2> İletişim Bilgileri </h2>
+
+        <hr />
+        <div class="form-group">
+
+            <div class="col-md-10">
+                E-mail <br />
+                @Html.EditorFor(model => model.mail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+
+            <div class="col-md-10">
+                Telefonu :<br />
+                @Html.EditorFor(model => model.telefon, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.telefon, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+
+            <div class="col-md-10">
+                Adresi <br />
+                @Html.EditorFor(model => model.adres, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.adres, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <br />
+
+        <input type="submit" value="Güncelle" class="btn btn-success" />
+    </div>
+  
+
+
+</div>
+
+}
+
+
+
+<style>
+    menu .aktif {
+        background-color: #000;
+        color: white;
+    }
+
+    menu ul {
+        list-style-type: none;
+        margin: 0;
+        margin-left: 0;
+        padding: 0;
+        width: 200px;
+        height: 400px;
+        background-color: #f2ecda;
+    }
+
+    menu li a {
+        display: block;
+        color: #000;
+        padding: 16px 16px;
+        text-decoration: none;
+    }
+
+        menu li a.active {
+            background-color: #000;
+            color: white;
+        }
+
+        menu li a:hover:not(.active) {
+            background-color: #be7e30;
+            color: white;
+        }
+</style>

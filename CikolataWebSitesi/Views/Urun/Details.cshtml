@@ -1,0 +1,95 @@
+﻿@model CikolataWebSitesi.Models.tblUrun
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/shared/_AdminLayout.cshtml";
+}
+
+<h2>Ürün Detay</h2>
+
+<div>
+
+
+    <dl class="dl-horizontal">
+        <dt>
+            Ürün Ad
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.urunAd)
+        </dd>
+
+        <dt>
+            Ürün Açıklama
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.urunAciklama)
+        </dd>
+
+        <dt>
+            Ürün Eklenme Tarihi
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.urunEklemeTarihi)
+        </dd>
+
+        <dt>
+            Durumu
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.durumu)
+        </dd>
+
+        <dt>
+            Kategori Adı
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblKategori.kategoriAdi)
+        </dd>
+
+        <dt>
+            Satıcı Adı
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblKullanici.kullaniciAdi)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.tblPromOnay.onayID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tblPromOnay.onayID)
+            </dd>*@
+
+        <dt>
+            Stok Adet
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblStok.stokID)
+        </dd>
+
+        <dt>
+            Resim
+        </dt>
+
+        <dd>
+            <img src="/Content/images/@Model.resim" width="100" height="100" />
+        </dd>
+
+    </dl>
+</div>
+
+<br />
+<hr />
+<p>
+    <button type="button" class="btn btn-outline-primary btn"> @Html.ActionLink("Güncelle", "Edit", new { id = Model.kategoriID }) </button>
+
+    <button type="button" class="btn btn-outline-primary btn">  @Html.ActionLink("Ürünler", "Index")</button>
+</p>

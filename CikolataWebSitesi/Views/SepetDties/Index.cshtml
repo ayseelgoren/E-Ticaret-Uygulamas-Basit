@@ -1,0 +1,135 @@
+﻿@model IEnumerable<CikolataWebSitesi.Models.tblSepetDty>
+@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<script src="~/content/js/jquery-1.11.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".satildi").hide;
+        $(".urunSil").click(function Urunsil() {
+            var uId = $(this).attr("name");
+
+            $.ajax({
+                type: "GET",
+                url: "/SepetDties/sepetUrunDusur",
+                data: { id: uId },
+                success: function myfunction() {
+                    $.ajax({
+                        type: "GET",
+                        url: "/SepetDties/Index",
+                        success: function (veri) {
+                            $(".table").html('');
+                            $(".table").html(veri);
+                        }
+                },
+                error: function myfunction() {
+                    alert("hata");
+                }
+
+            });
+        });
+
+        $(".urunArttir").click(function sayiArttir() {
+            var uId = $(this).attr("name");
+            $.ajax({
+                type: "GET",
+                url: "/SepetDties/sepetUrunArttir",
+                data: { id: uId },
+                success: function myfunction() {
+                    $.ajax({
+                        type: "GET",
+                        url: "/SepetDties/Index",
+                        success: function (veri) {
+                            $(".table").html('');
+                            $(".table").html(veri);
+                        }
+                    });
+                }
+            });
+
+        });
+
+        //ürün satın alma fonksiyonu
+        //veri olarak kullanıcı Idyi gönderir.
+        $(".satinAl").click(function satinAl() {
+            $.ajax({
+                type: "get",
+                url: "/SepetDties/satisTamamla",
+                data: { id: @Session["kullaniciId"].ToString() },
+                success=function (responce) {
+                    $(".satildi").show(2000);
+                },
+                error=function (responce) {
+                    alert("satın alma gerçeklemedi!!!!!!!!!!");
+                }
+            });
+        });
+    });
+</script>
+@*sepet index saya tasarımı*@
+
+<table class="table">
+
+    @*gelen kullanıcının ürünlerini listelerini tblsepetten listle:*@
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            //Giriş yapan kullanıcıya ait sepet detayı listeler.****
+            if (item.tblSepet.sptKullaniciID == int.Parse(Session["kullaniciId"].ToString()) && item.sepetDurum==true)
+            {
+                <tr>
+                    <td width="%25" height="%25"></td>
+                    <td width="100px" height="100px">
+                        <a><img src="/Content/images/@Html.DisplayFor(modelItem => item.tblUrun.resim)" width="100px" height="100px" /></a>
+                    </td>
+                    <td width="450px">
+                        <a class="name"><font color="#4d4dff" size="4">@Html.DisplayFor(modelItem => item.tblUrun.urunAd) </font></a>
+                        <br />
+
+                        <font size="2">Sipariş Adet:</font>
+                        <a class="name"><font size="2">@Html.DisplayFor(modelItem => item.adet) </font> </a>
+                        <br />
+                        <font size="2"> Toplam Fiyat:</font><br />
+                        <a class="name"><font color="red" size="5"> @Html.DisplayFor(modelItem => item.topFiyat)</font> </a>
+                    </td>
+                    <td>
+                        @*ürünün sepetteki sayısını arttırma*@
+                        <a name="@item.urunId" class="urunArttir"><font color="#33ccff" size="5"><span class="glyphicon glyphicon glyphicon-hand-up" aria-hidden="true"></span></font></a><br />
+                        @*ürünün sayısını azaltma bir tane varsa çıkar*@
+                        <a class="urunSil" name="@item.urunId"><font color="#33ccff" size="5"><span class="glyphicon glyphicon glyphicon-hand-down" aria-hidden="true"></span></font></a><br />
+
+
+                    </td>
+                    <td>
+                        @*ürünFavoriye Gitcek*@
+                        <a href="/Kullanici/FavoriEkle/@item.urunId"><font color="6666ff" size="5"><span class="glyphicon glyphicon glyphicon-heart-empty" aria-hidden="true"></span></font></a><br />
+                        @* ürün gitcek*@
+                        <a href="/Urun/Detay/@item.urunId"><font color="6666ff" size="5"><span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true"></span></font></a><br />
+                    </td>
+                    <td>
+                        <a class="satildi"><font color="red" size="5"><span class="glyphicon glyphicon glyphicon-transfer" aria-hidden="true"></span></font></a><br />
+                    </td>
+                </tr>
+            }
+
+        }
+    }
+    <tr>
+        <td width="%25" height="%25"></td>
+        <td width="100px" height="100px"></td>
+        <td width="450px">
+            <font size="4"> Ödenecek Tutar:</font><br />
+            <a class="name"><font color="red" size="6">@CikolataWebSitesi.Models.sepet.AktifSepet.toplamtutar</font> </a>
+        </td>
+        <td>
+            <font size="2"> Ödeme Yap:</font><br />
+            <a href="/Siparis/Index/@Convert.ToInt32(Session["kullaniciId"])" @*name="@Session["kullaniciId"].ToString()"*@><font color="6666ff" size="7"><span class="glyphicon glyphicon glyphicon-credit-card" aria-hidden="true"></span></font></a>
+        </td>
+        <td>  </td>
+        <td>  </td>
+    </tr>
+
+</table>

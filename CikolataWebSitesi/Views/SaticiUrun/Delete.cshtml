@@ -1,0 +1,105 @@
+﻿@model CikolataWebSitesi.Models.tblUrun
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_SaticiLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tblUrun</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.urunAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.urunAd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.urunAciklama)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.urunAciklama)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.urunEklemeTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.urunEklemeTarihi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.durumu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.durumu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.resim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.resim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblFiyat.fiyatID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblFiyat.fiyatID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblKategori.kategoriAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblKategori.kategoriAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblKullanici.kullaniciAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblKullanici.kullaniciAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblPromOnay.onayID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblPromOnay.onayID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblStok.stokID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblStok.stokID)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

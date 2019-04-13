@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7de0796654de46529b3b35fa4a2e7ee7" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="cikolataModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="cikolataModel.tblFavori" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cikolataModel.tblFiyat" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cikolataModel.tblKategori" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="cikolataModel.tblKullanici" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cikolataModel.tblKullaniciRol" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="cikolataModel.tblMesaj" Width="1.5" PointX="12.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="cikolataModel.tblPromOnay" Width="1.5" PointX="9.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="cikolataModel.tblPromosyon" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="cikolataModel.tblSepet" Width="1.5" PointX="7.5" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="cikolataModel.tblSepetDty" Width="1.5" PointX="9.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="cikolataModel.tblSiparisDetay" Width="1.5" PointX="9.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="cikolataModel.tblStok" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="cikolataModel.tblUrun" Width="1.5" PointX="7.5" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="cikolataModel.FK_tblFavori_tblKullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="cikolataModel.FK_tblFavori_tblUrun" ManuallyRouted="false" />
+        <AssociationConnector Association="cikolataModel.FK_tblFiyat_tblPromosyon1" ManuallyRouted="false" />
+        <AssociationConnector Association="cikolataModel.FK_tblUrun_tblUrun" ManuallyRouted="false" />
+        <AssociationConnector Association="cikolataModel.FK_tblPromosyon_tblUrun" ManuallyRouted="false" />
+        <AssociationConnector Association="cikolataModel.FK_tblUrun_tblKategori" ManuallyRouted="false" />
+        <AssociationConnector Association="cikolataModel.FK_tblKullanici_tblKullaniciRol" ManuallyRouted="false" />
+        <AssociationConnector Association="cikolataModel.FK_tblMesaj_tblKullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="cikolataModel.FK_tblPromOnay_tblKullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="cikolataModel.FK_tblSepet_tblKullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="cikolataModel.FK_tblUrun_tblKullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="cikolataModel.FK_tblMesaj_tblUrun" ManuallyRouted="false" />
+        <AssociationConnector Association="cikolataModel.FK_tblPromOnay_tblPromosyon" ManuallyRouted="false" />
+        <AssociationConnector Association="cikolataModel.FK_tblPromOnay_tblUrun" ManuallyRouted="false" />
+        <AssociationConnector Association="cikolataModel.FK_tblPromosyon_tblUrun1" ManuallyRouted="false" />
+        <AssociationConnector Association="cikolataModel.FK_tblSepetDty_tblSepet" ManuallyRouted="false" />
+        <AssociationConnector Association="cikolataModel.FK_tblSiparisDetay_tblSepet" ManuallyRouted="false" />
+        <AssociationConnector Association="cikolataModel.FK_tblSepetDty_tblUrun" ManuallyRouted="false" />
+        <AssociationConnector Association="cikolataModel.FK_tblUrun_tblStok" ManuallyRouted="false" />
+        <AssociationConnector Association="cikolataModel.FK_tblKullanici_tblKullanici" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

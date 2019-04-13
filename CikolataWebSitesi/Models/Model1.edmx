@@ -1,0 +1,1272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="cikolataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tblFavori">
+          <Key>
+            <PropertyRef Name="favoriID" />
+          </Key>
+          <Property Name="favoriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="urunID" Type="int" />
+          <Property Name="kullaniciID" Type="int" />
+          <Property Name="favoriDurumu" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblFiyat">
+          <Key>
+            <PropertyRef Name="fiyatID" />
+          </Key>
+          <Property Name="fiyatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="urunPromosyonID" Type="int" />
+          <Property Name="alisFiyati" Type="float" Nullable="false" />
+          <Property Name="satisFiyati" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblKategori">
+          <Key>
+            <PropertyRef Name="kategoriID" />
+          </Key>
+          <Property Name="kategoriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategoriAdi" Type="nvarchar" MaxLength="70" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblKullanici">
+          <Key>
+            <PropertyRef Name="kullaniciID" />
+          </Key>
+          <Property Name="kullaniciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullaniciRolID" Type="int" />
+          <Property Name="kullaniciAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kullanciSoyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kullaniciSifre" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="kullaniciKayitTarihi" Type="date" Nullable="false" />
+          <Property Name="mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="telefon" Type="nvarchar" MaxLength="50" />
+          <Property Name="adres" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblKullaniciRol">
+          <Key>
+            <PropertyRef Name="kullaniciRolID" />
+          </Key>
+          <Property Name="kullaniciRolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullaniciRolAdi" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMesaj">
+          <Key>
+            <PropertyRef Name="mesajID" />
+          </Key>
+          <Property Name="mesajID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullaniciID" Type="int" Nullable="false" />
+          <Property Name="urunID" Type="int" Nullable="false" />
+          <Property Name="saticiID" Type="int" Nullable="false" />
+          <Property Name="mesaj" Type="ntext" Nullable="false" />
+          <Property Name="mesajNo" Type="int" />
+          <Property Name="mesajSahibi" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblPromOnay">
+          <Key>
+            <PropertyRef Name="onayID" />
+          </Key>
+          <Property Name="onayID" Type="int" Nullable="false" />
+          <Property Name="PromosyonId" Type="int" Nullable="false" />
+          <Property Name="saticiId" Type="int" Nullable="false" />
+          <Property Name="urunID" Type="int" Nullable="false" />
+          <Property Name="onayDurumu" Type="bit" />
+          <Property Name="satisFiyat" Type="float" />
+        </EntityType>
+        <EntityType Name="tblPromosyon">
+          <Key>
+            <PropertyRef Name="promosyonID" />
+          </Key>
+          <Property Name="promosyonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="urunID" Type="int" />
+          <Property Name="promosyonAdi" Type="nvarchar" MaxLength="70" />
+          <Property Name="promosyonIndirimOrani" Type="float" Nullable="false" />
+          <Property Name="baslamaTarihi" Type="date" />
+          <Property Name="bitisTarihi" Type="date" />
+          <Property Name="promosyonResim" Type="nvarchar" MaxLength="50" />
+          <Property Name="kategoriID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblSepet">
+          <Key>
+            <PropertyRef Name="sepetID" />
+            <PropertyRef Name="sptKullaniciID" />
+          </Key>
+          <Property Name="sepetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sptKullaniciID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSepetDty">
+          <Key>
+            <PropertyRef Name="sepetDtyID" />
+          </Key>
+          <Property Name="sepetDtyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sepetID" Type="int" />
+          <Property Name="kullaniciID" Type="int" />
+          <Property Name="urunId" Type="int" />
+          <Property Name="urunAdet" Type="tinyint" />
+          <Property Name="topFiyat" Type="float" Nullable="false" />
+          <Property Name="eklenmeTarihi" Type="date" />
+          <Property Name="sepetDurum" Type="bit" />
+          <Property Name="adet" Type="int" />
+        </EntityType>
+        <EntityType Name="tblSiparisDetay">
+          <Key>
+            <PropertyRef Name="siparisDtyID" />
+          </Key>
+          <Property Name="siparisDtyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sepetID" Type="int" />
+          <Property Name="kullaniciID" Type="int" />
+          <Property Name="siparisTarihi" Type="date" />
+        </EntityType>
+        <EntityType Name="tblStok">
+          <Key>
+            <PropertyRef Name="stokID" />
+          </Key>
+          <Property Name="stokID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stokMiktari" Type="int" />
+        </EntityType>
+        <EntityType Name="tblUrun">
+          <Key>
+            <PropertyRef Name="urunID" />
+          </Key>
+          <Property Name="urunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="saticiID" Type="int" />
+          <Property Name="kategoriID" Type="int" Nullable="false" />
+          <Property Name="fiyatID" Type="int" />
+          <Property Name="stokID" Type="int" />
+          <Property Name="urunAd" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="urunAciklama" Type="nvarchar(max)" />
+          <Property Name="urunEklemeTarihi" Type="date" Nullable="false" />
+          <Property Name="durumu" Type="bit" Nullable="false" />
+          <Property Name="resim" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_tblFavori_tblKullanici">
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="0..1" />
+          <End Role="tblFavori" Type="Self.tblFavori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullanici">
+              <PropertyRef Name="kullaniciID" />
+            </Principal>
+            <Dependent Role="tblFavori">
+              <PropertyRef Name="kullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFavori_tblUrun">
+          <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="0..1" />
+          <End Role="tblFavori" Type="Self.tblFavori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUrun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="tblFavori">
+              <PropertyRef Name="urunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFiyat_tblPromosyon1">
+          <End Role="tblPromosyon" Type="Self.tblPromosyon" Multiplicity="0..1" />
+          <End Role="tblFiyat" Type="Self.tblFiyat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPromosyon">
+              <PropertyRef Name="promosyonID" />
+            </Principal>
+            <Dependent Role="tblFiyat">
+              <PropertyRef Name="urunPromosyonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblKullanici_tblKullanici">
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="1" />
+          <End Role="tblKullanici1" Type="Self.tblKullanici" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullanici">
+              <PropertyRef Name="kullaniciID" />
+            </Principal>
+            <Dependent Role="tblKullanici1">
+              <PropertyRef Name="kullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblKullanici_tblKullaniciRol">
+          <End Role="tblKullaniciRol" Type="Self.tblKullaniciRol" Multiplicity="0..1" />
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullaniciRol">
+              <PropertyRef Name="kullaniciRolID" />
+            </Principal>
+            <Dependent Role="tblKullanici">
+              <PropertyRef Name="kullaniciRolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMesaj_tblKullanici">
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="1" />
+          <End Role="tblMesaj" Type="Self.tblMesaj" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullanici">
+              <PropertyRef Name="kullaniciID" />
+            </Principal>
+            <Dependent Role="tblMesaj">
+              <PropertyRef Name="kullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMesaj_tblUrun">
+          <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="1" />
+          <End Role="tblMesaj" Type="Self.tblMesaj" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUrun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="tblMesaj">
+              <PropertyRef Name="urunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPromOnay_tblKullanici">
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="1" />
+          <End Role="tblPromOnay" Type="Self.tblPromOnay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullanici">
+              <PropertyRef Name="kullaniciID" />
+            </Principal>
+            <Dependent Role="tblPromOnay">
+              <PropertyRef Name="saticiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPromOnay_tblPromosyon">
+          <End Role="tblPromosyon" Type="Self.tblPromosyon" Multiplicity="1" />
+          <End Role="tblPromOnay" Type="Self.tblPromOnay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPromosyon">
+              <PropertyRef Name="promosyonID" />
+            </Principal>
+            <Dependent Role="tblPromOnay">
+              <PropertyRef Name="PromosyonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPromOnay_tblUrun">
+          <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="1" />
+          <End Role="tblPromOnay" Type="Self.tblPromOnay" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblUrun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="tblPromOnay">
+              <PropertyRef Name="onayID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPromosyon_tblUrun">
+          <End Role="tblKategori" Type="Self.tblKategori" Multiplicity="0..1" />
+          <End Role="tblPromosyon" Type="Self.tblPromosyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKategori">
+              <PropertyRef Name="kategoriID" />
+            </Principal>
+            <Dependent Role="tblPromosyon">
+              <PropertyRef Name="kategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPromosyon_tblUrun1">
+          <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="0..1" />
+          <End Role="tblPromosyon" Type="Self.tblPromosyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUrun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="tblPromosyon">
+              <PropertyRef Name="urunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSepet_tblKullanici">
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="1" />
+          <End Role="tblSepet" Type="Self.tblSepet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullanici">
+              <PropertyRef Name="kullaniciID" />
+            </Principal>
+            <Dependent Role="tblSepet">
+              <PropertyRef Name="sptKullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSepetDty_tblSepet">
+          <End Role="tblSepet" Type="Self.tblSepet" Multiplicity="0..1" />
+          <End Role="tblSepetDty" Type="Self.tblSepetDty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSepet">
+              <PropertyRef Name="sepetID" />
+              <PropertyRef Name="sptKullaniciID" />
+            </Principal>
+            <Dependent Role="tblSepetDty">
+              <PropertyRef Name="sepetID" />
+              <PropertyRef Name="kullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSepetDty_tblUrun">
+          <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="0..1" />
+          <End Role="tblSepetDty" Type="Self.tblSepetDty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUrun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="tblSepetDty">
+              <PropertyRef Name="urunId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSiparisDetay_tblSepet">
+          <End Role="tblSepet" Type="Self.tblSepet" Multiplicity="0..1" />
+          <End Role="tblSiparisDetay" Type="Self.tblSiparisDetay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSepet">
+              <PropertyRef Name="sepetID" />
+              <PropertyRef Name="sptKullaniciID" />
+            </Principal>
+            <Dependent Role="tblSiparisDetay">
+              <PropertyRef Name="sepetID" />
+              <PropertyRef Name="kullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUrun_tblKategori">
+          <End Role="tblKategori" Type="Self.tblKategori" Multiplicity="1" />
+          <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKategori">
+              <PropertyRef Name="kategoriID" />
+            </Principal>
+            <Dependent Role="tblUrun">
+              <PropertyRef Name="kategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUrun_tblKullanici">
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="0..1" />
+          <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullanici">
+              <PropertyRef Name="kullaniciID" />
+            </Principal>
+            <Dependent Role="tblUrun">
+              <PropertyRef Name="saticiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUrun_tblStok">
+          <End Role="tblStok" Type="Self.tblStok" Multiplicity="0..1" />
+          <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStok">
+              <PropertyRef Name="stokID" />
+            </Principal>
+            <Dependent Role="tblUrun">
+              <PropertyRef Name="stokID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUrun_tblUrun">
+          <End Role="tblFiyat" Type="Self.tblFiyat" Multiplicity="0..1" />
+          <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFiyat">
+              <PropertyRef Name="fiyatID" />
+            </Principal>
+            <Dependent Role="tblUrun">
+              <PropertyRef Name="fiyatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_encoksatbesurun" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_encoksatisyapilankategori" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_encoksepeteurunlerilkbes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_gunluksatilanurunsayisi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_gunlukuyekayitsayisi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_haftaliksatilanurunsayisi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_haftalikuyekayitsayisi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_toplamSatilanUrun" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_toplamUyeSayisi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_tumsatilanurunsayisi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="cikolataModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFavori" EntityType="Self.tblFavori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFiyat" EntityType="Self.tblFiyat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblKategori" EntityType="Self.tblKategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblKullanici" EntityType="Self.tblKullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblKullaniciRol" EntityType="Self.tblKullaniciRol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMesaj" EntityType="Self.tblMesaj" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPromOnay" EntityType="Self.tblPromOnay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPromosyon" EntityType="Self.tblPromosyon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSepet" EntityType="Self.tblSepet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSepetDty" EntityType="Self.tblSepetDty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSiparisDetay" EntityType="Self.tblSiparisDetay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStok" EntityType="Self.tblStok" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUrun" EntityType="Self.tblUrun" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblFavori_tblKullanici" Association="Self.FK_tblFavori_tblKullanici">
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+            <End Role="tblFavori" EntitySet="tblFavori" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFavori_tblUrun" Association="Self.FK_tblFavori_tblUrun">
+            <End Role="tblUrun" EntitySet="tblUrun" />
+            <End Role="tblFavori" EntitySet="tblFavori" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFiyat_tblPromosyon1" Association="Self.FK_tblFiyat_tblPromosyon1">
+            <End Role="tblPromosyon" EntitySet="tblPromosyon" />
+            <End Role="tblFiyat" EntitySet="tblFiyat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblKullanici_tblKullanici" Association="Self.FK_tblKullanici_tblKullanici">
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+            <End Role="tblKullanici1" EntitySet="tblKullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblKullanici_tblKullaniciRol" Association="Self.FK_tblKullanici_tblKullaniciRol">
+            <End Role="tblKullaniciRol" EntitySet="tblKullaniciRol" />
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMesaj_tblKullanici" Association="Self.FK_tblMesaj_tblKullanici">
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+            <End Role="tblMesaj" EntitySet="tblMesaj" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMesaj_tblUrun" Association="Self.FK_tblMesaj_tblUrun">
+            <End Role="tblUrun" EntitySet="tblUrun" />
+            <End Role="tblMesaj" EntitySet="tblMesaj" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPromOnay_tblKullanici" Association="Self.FK_tblPromOnay_tblKullanici">
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+            <End Role="tblPromOnay" EntitySet="tblPromOnay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPromOnay_tblPromosyon" Association="Self.FK_tblPromOnay_tblPromosyon">
+            <End Role="tblPromosyon" EntitySet="tblPromosyon" />
+            <End Role="tblPromOnay" EntitySet="tblPromOnay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPromOnay_tblUrun" Association="Self.FK_tblPromOnay_tblUrun">
+            <End Role="tblUrun" EntitySet="tblUrun" />
+            <End Role="tblPromOnay" EntitySet="tblPromOnay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPromosyon_tblUrun" Association="Self.FK_tblPromosyon_tblUrun">
+            <End Role="tblKategori" EntitySet="tblKategori" />
+            <End Role="tblPromosyon" EntitySet="tblPromosyon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPromosyon_tblUrun1" Association="Self.FK_tblPromosyon_tblUrun1">
+            <End Role="tblUrun" EntitySet="tblUrun" />
+            <End Role="tblPromosyon" EntitySet="tblPromosyon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSepet_tblKullanici" Association="Self.FK_tblSepet_tblKullanici">
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+            <End Role="tblSepet" EntitySet="tblSepet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSepetDty_tblSepet" Association="Self.FK_tblSepetDty_tblSepet">
+            <End Role="tblSepet" EntitySet="tblSepet" />
+            <End Role="tblSepetDty" EntitySet="tblSepetDty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSepetDty_tblUrun" Association="Self.FK_tblSepetDty_tblUrun">
+            <End Role="tblUrun" EntitySet="tblUrun" />
+            <End Role="tblSepetDty" EntitySet="tblSepetDty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSiparisDetay_tblSepet" Association="Self.FK_tblSiparisDetay_tblSepet">
+            <End Role="tblSepet" EntitySet="tblSepet" />
+            <End Role="tblSiparisDetay" EntitySet="tblSiparisDetay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUrun_tblKategori" Association="Self.FK_tblUrun_tblKategori">
+            <End Role="tblKategori" EntitySet="tblKategori" />
+            <End Role="tblUrun" EntitySet="tblUrun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUrun_tblKullanici" Association="Self.FK_tblUrun_tblKullanici">
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+            <End Role="tblUrun" EntitySet="tblUrun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUrun_tblStok" Association="Self.FK_tblUrun_tblStok">
+            <End Role="tblStok" EntitySet="tblStok" />
+            <End Role="tblUrun" EntitySet="tblUrun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUrun_tblUrun" Association="Self.FK_tblUrun_tblUrun">
+            <End Role="tblFiyat" EntitySet="tblFiyat" />
+            <End Role="tblUrun" EntitySet="tblUrun" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="cikolataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblFavori">
+          <Key>
+            <PropertyRef Name="favoriID" />
+          </Key>
+          <Property Name="favoriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="urunID" Type="Int32" />
+          <Property Name="kullaniciID" Type="Int32" />
+          <Property Name="favoriDurumu" Type="Boolean" />
+          <NavigationProperty Name="tblKullanici" Relationship="Self.FK_tblFavori_tblKullanici" FromRole="tblFavori" ToRole="tblKullanici" />
+          <NavigationProperty Name="tblUrun" Relationship="Self.FK_tblFavori_tblUrun" FromRole="tblFavori" ToRole="tblUrun" />
+        </EntityType>
+        <EntityType Name="tblFiyat">
+          <Key>
+            <PropertyRef Name="fiyatID" />
+          </Key>
+          <Property Name="fiyatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="urunPromosyonID" Type="Int32" />
+          <Property Name="alisFiyati" Type="Double" Nullable="false" />
+          <Property Name="satisFiyati" Type="Double" Nullable="false" />
+          <NavigationProperty Name="tblPromosyon" Relationship="Self.FK_tblFiyat_tblPromosyon1" FromRole="tblFiyat" ToRole="tblPromosyon" />
+          <NavigationProperty Name="tblUrun" Relationship="Self.FK_tblUrun_tblUrun" FromRole="tblFiyat" ToRole="tblUrun" />
+        </EntityType>
+        <EntityType Name="tblKategori">
+          <Key>
+            <PropertyRef Name="kategoriID" />
+          </Key>
+          <Property Name="kategoriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategoriAdi" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblPromosyon" Relationship="Self.FK_tblPromosyon_tblUrun" FromRole="tblKategori" ToRole="tblPromosyon" />
+          <NavigationProperty Name="tblUrun" Relationship="Self.FK_tblUrun_tblKategori" FromRole="tblKategori" ToRole="tblUrun" />
+        </EntityType>
+        <EntityType Name="tblKullanici">
+          <Key>
+            <PropertyRef Name="kullaniciID" />
+          </Key>
+          <Property Name="kullaniciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullaniciRolID" Type="Int32" />
+          <Property Name="kullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="kullanciSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="kullaniciSifre" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="kullaniciKayitTarihi" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblFavori" Relationship="Self.FK_tblFavori_tblKullanici" FromRole="tblKullanici" ToRole="tblFavori" />
+          <NavigationProperty Name="tblKullaniciRol" Relationship="Self.FK_tblKullanici_tblKullaniciRol" FromRole="tblKullanici" ToRole="tblKullaniciRol" />
+          <NavigationProperty Name="tblMesaj" Relationship="Self.FK_tblMesaj_tblKullanici" FromRole="tblKullanici" ToRole="tblMesaj" />
+          <NavigationProperty Name="tblPromOnay" Relationship="Self.FK_tblPromOnay_tblKullanici" FromRole="tblKullanici" ToRole="tblPromOnay" />
+          <NavigationProperty Name="tblSepet" Relationship="Self.FK_tblSepet_tblKullanici" FromRole="tblKullanici" ToRole="tblSepet" />
+          <NavigationProperty Name="tblUrun" Relationship="Self.FK_tblUrun_tblKullanici" FromRole="tblKullanici" ToRole="tblUrun" />
+          <NavigationProperty Name="tblKullanici1" Relationship="cikolataModel.FK_tblKullanici_tblKullanici" FromRole="tblKullanici" ToRole="tblKullanici1" />
+          <NavigationProperty Name="tblKullanici2" Relationship="cikolataModel.FK_tblKullanici_tblKullanici" FromRole="tblKullanici1" ToRole="tblKullanici" />
+        </EntityType>
+        <EntityType Name="tblKullaniciRol">
+          <Key>
+            <PropertyRef Name="kullaniciRolID" />
+          </Key>
+          <Property Name="kullaniciRolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullaniciRolAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblKullanici" Relationship="Self.FK_tblKullanici_tblKullaniciRol" FromRole="tblKullaniciRol" ToRole="tblKullanici" />
+        </EntityType>
+        <EntityType Name="tblMesaj">
+          <Key>
+            <PropertyRef Name="mesajID" />
+          </Key>
+          <Property Name="mesajID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="urunID" Type="Int32" Nullable="false" />
+          <Property Name="saticiID" Type="Int32" Nullable="false" />
+          <Property Name="mesaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mesajNo" Type="Int32" />
+          <Property Name="mesajSahibi" Type="Boolean" />
+          <NavigationProperty Name="tblKullanici" Relationship="Self.FK_tblMesaj_tblKullanici" FromRole="tblMesaj" ToRole="tblKullanici" />
+          <NavigationProperty Name="tblUrun" Relationship="Self.FK_tblMesaj_tblUrun" FromRole="tblMesaj" ToRole="tblUrun" />
+        </EntityType>
+        <EntityType Name="tblPromOnay">
+          <Key>
+            <PropertyRef Name="onayID" />
+          </Key>
+          <Property Name="onayID" Type="Int32" Nullable="false" />
+          <Property Name="PromosyonId" Type="Int32" Nullable="false" />
+          <Property Name="saticiId" Type="Int32" Nullable="false" />
+          <Property Name="urunID" Type="Int32" Nullable="false" />
+          <Property Name="onayDurumu" Type="Boolean" />
+          <NavigationProperty Name="tblKullanici" Relationship="Self.FK_tblPromOnay_tblKullanici" FromRole="tblPromOnay" ToRole="tblKullanici" />
+          <NavigationProperty Name="tblPromosyon" Relationship="Self.FK_tblPromOnay_tblPromosyon" FromRole="tblPromOnay" ToRole="tblPromosyon" />
+          <NavigationProperty Name="tblUrun" Relationship="Self.FK_tblPromOnay_tblUrun" FromRole="tblPromOnay" ToRole="tblUrun" />
+          <Property Name="satisFiyat" Type="Double" />
+        </EntityType>
+        <EntityType Name="tblPromosyon">
+          <Key>
+            <PropertyRef Name="promosyonID" />
+          </Key>
+          <Property Name="promosyonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="urunID" Type="Int32" />
+          <Property Name="promosyonAdi" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="promosyonIndirimOrani" Type="Double" Nullable="false" />
+          <Property Name="baslamaTarihi" Type="DateTime" Precision="0" />
+          <Property Name="bitisTarihi" Type="DateTime" Precision="0" />
+          <Property Name="promosyonResim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kategoriID" Type="Int32" />
+          <NavigationProperty Name="tblFiyat" Relationship="Self.FK_tblFiyat_tblPromosyon1" FromRole="tblPromosyon" ToRole="tblFiyat" />
+          <NavigationProperty Name="tblKategori" Relationship="Self.FK_tblPromosyon_tblUrun" FromRole="tblPromosyon" ToRole="tblKategori" />
+          <NavigationProperty Name="tblPromOnay" Relationship="Self.FK_tblPromOnay_tblPromosyon" FromRole="tblPromosyon" ToRole="tblPromOnay" />
+          <NavigationProperty Name="tblUrun" Relationship="Self.FK_tblPromosyon_tblUrun1" FromRole="tblPromosyon" ToRole="tblUrun" />
+        </EntityType>
+        <EntityType Name="tblSepet">
+          <Key>
+            <PropertyRef Name="sepetID" />
+            <PropertyRef Name="sptKullaniciID" />
+          </Key>
+          <Property Name="sepetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sptKullaniciID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblKullanici" Relationship="Self.FK_tblSepet_tblKullanici" FromRole="tblSepet" ToRole="tblKullanici" />
+          <NavigationProperty Name="tblSepetDty" Relationship="Self.FK_tblSepetDty_tblSepet" FromRole="tblSepet" ToRole="tblSepetDty" />
+          <NavigationProperty Name="tblSiparisDetay" Relationship="Self.FK_tblSiparisDetay_tblSepet" FromRole="tblSepet" ToRole="tblSiparisDetay" />
+        </EntityType>
+        <EntityType Name="tblSepetDty">
+          <Key>
+            <PropertyRef Name="sepetDtyID" />
+          </Key>
+          <Property Name="sepetDtyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sepetID" Type="Int32" />
+          <Property Name="kullaniciID" Type="Int32" />
+          <Property Name="urunId" Type="Int32" />
+          <Property Name="urunAdet" Type="Byte" />
+          <Property Name="topFiyat" Type="Double" Nullable="false" />
+          <Property Name="eklenmeTarihi" Type="DateTime" Precision="0" />
+          <Property Name="sepetDurum" Type="Boolean" />
+          <NavigationProperty Name="tblSepet" Relationship="Self.FK_tblSepetDty_tblSepet" FromRole="tblSepetDty" ToRole="tblSepet" />
+          <NavigationProperty Name="tblUrun" Relationship="Self.FK_tblSepetDty_tblUrun" FromRole="tblSepetDty" ToRole="tblUrun" />
+          <Property Name="adet" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblSiparisDetay">
+          <Key>
+            <PropertyRef Name="siparisDtyID" />
+          </Key>
+          <Property Name="siparisDtyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sepetID" Type="Int32" />
+          <Property Name="kullaniciID" Type="Int32" />
+          <Property Name="siparisTarihi" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblSepet" Relationship="Self.FK_tblSiparisDetay_tblSepet" FromRole="tblSiparisDetay" ToRole="tblSepet" />
+        </EntityType>
+        <EntityType Name="tblStok">
+          <Key>
+            <PropertyRef Name="stokID" />
+          </Key>
+          <Property Name="stokID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stokMiktari" Type="Int32" />
+          <NavigationProperty Name="tblUrun" Relationship="Self.FK_tblUrun_tblStok" FromRole="tblStok" ToRole="tblUrun" />
+        </EntityType>
+        <EntityType Name="tblUrun">
+          <Key>
+            <PropertyRef Name="urunID" />
+          </Key>
+          <Property Name="urunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="saticiID" Type="Int32" />
+          <Property Name="kategoriID" Type="Int32" Nullable="false" />
+          <Property Name="fiyatID" Type="Int32" />
+          <Property Name="stokID" Type="Int32" />
+          <Property Name="urunAd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="urunAciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="urunEklemeTarihi" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="durumu" Type="Boolean" Nullable="false" />
+          <Property Name="resim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblFavori" Relationship="Self.FK_tblFavori_tblUrun" FromRole="tblUrun" ToRole="tblFavori" />
+          <NavigationProperty Name="tblFiyat" Relationship="Self.FK_tblUrun_tblUrun" FromRole="tblUrun" ToRole="tblFiyat" />
+          <NavigationProperty Name="tblKategori" Relationship="Self.FK_tblUrun_tblKategori" FromRole="tblUrun" ToRole="tblKategori" />
+          <NavigationProperty Name="tblKullanici" Relationship="Self.FK_tblUrun_tblKullanici" FromRole="tblUrun" ToRole="tblKullanici" />
+          <NavigationProperty Name="tblMesaj" Relationship="Self.FK_tblMesaj_tblUrun" FromRole="tblUrun" ToRole="tblMesaj" />
+          <NavigationProperty Name="tblPromOnay" Relationship="Self.FK_tblPromOnay_tblUrun" FromRole="tblUrun" ToRole="tblPromOnay" />
+          <NavigationProperty Name="tblPromosyon" Relationship="Self.FK_tblPromosyon_tblUrun1" FromRole="tblUrun" ToRole="tblPromosyon" />
+          <NavigationProperty Name="tblSepetDty" Relationship="Self.FK_tblSepetDty_tblUrun" FromRole="tblUrun" ToRole="tblSepetDty" />
+          <NavigationProperty Name="tblStok" Relationship="Self.FK_tblUrun_tblStok" FromRole="tblUrun" ToRole="tblStok" />
+        </EntityType>
+        <Association Name="FK_tblFavori_tblKullanici">
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="0..1" />
+          <End Role="tblFavori" Type="Self.tblFavori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullanici">
+              <PropertyRef Name="kullaniciID" />
+            </Principal>
+            <Dependent Role="tblFavori">
+              <PropertyRef Name="kullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFavori_tblUrun">
+          <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="0..1" />
+          <End Role="tblFavori" Type="Self.tblFavori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUrun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="tblFavori">
+              <PropertyRef Name="urunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFiyat_tblPromosyon1">
+          <End Role="tblPromosyon" Type="Self.tblPromosyon" Multiplicity="0..1" />
+          <End Role="tblFiyat" Type="Self.tblFiyat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPromosyon">
+              <PropertyRef Name="promosyonID" />
+            </Principal>
+            <Dependent Role="tblFiyat">
+              <PropertyRef Name="urunPromosyonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUrun_tblUrun">
+          <End Role="tblFiyat" Type="Self.tblFiyat" Multiplicity="0..1" />
+          <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFiyat">
+              <PropertyRef Name="fiyatID" />
+            </Principal>
+            <Dependent Role="tblUrun">
+              <PropertyRef Name="fiyatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPromosyon_tblUrun">
+          <End Role="tblKategori" Type="Self.tblKategori" Multiplicity="0..1" />
+          <End Role="tblPromosyon" Type="Self.tblPromosyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKategori">
+              <PropertyRef Name="kategoriID" />
+            </Principal>
+            <Dependent Role="tblPromosyon">
+              <PropertyRef Name="kategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUrun_tblKategori">
+          <End Role="tblKategori" Type="Self.tblKategori" Multiplicity="1" />
+          <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKategori">
+              <PropertyRef Name="kategoriID" />
+            </Principal>
+            <Dependent Role="tblUrun">
+              <PropertyRef Name="kategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblKullanici_tblKullaniciRol">
+          <End Role="tblKullaniciRol" Type="Self.tblKullaniciRol" Multiplicity="0..1" />
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullaniciRol">
+              <PropertyRef Name="kullaniciRolID" />
+            </Principal>
+            <Dependent Role="tblKullanici">
+              <PropertyRef Name="kullaniciRolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMesaj_tblKullanici">
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="1" />
+          <End Role="tblMesaj" Type="Self.tblMesaj" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullanici">
+              <PropertyRef Name="kullaniciID" />
+            </Principal>
+            <Dependent Role="tblMesaj">
+              <PropertyRef Name="kullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPromOnay_tblKullanici">
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="1" />
+          <End Role="tblPromOnay" Type="Self.tblPromOnay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullanici">
+              <PropertyRef Name="kullaniciID" />
+            </Principal>
+            <Dependent Role="tblPromOnay">
+              <PropertyRef Name="saticiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSepet_tblKullanici">
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="1" />
+          <End Role="tblSepet" Type="Self.tblSepet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullanici">
+              <PropertyRef Name="kullaniciID" />
+            </Principal>
+            <Dependent Role="tblSepet">
+              <PropertyRef Name="sptKullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUrun_tblKullanici">
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="0..1" />
+          <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullanici">
+              <PropertyRef Name="kullaniciID" />
+            </Principal>
+            <Dependent Role="tblUrun">
+              <PropertyRef Name="saticiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMesaj_tblUrun">
+          <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="1" />
+          <End Role="tblMesaj" Type="Self.tblMesaj" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUrun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="tblMesaj">
+              <PropertyRef Name="urunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPromOnay_tblPromosyon">
+          <End Role="tblPromosyon" Type="Self.tblPromosyon" Multiplicity="1" />
+          <End Role="tblPromOnay" Type="Self.tblPromOnay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPromosyon">
+              <PropertyRef Name="promosyonID" />
+            </Principal>
+            <Dependent Role="tblPromOnay">
+              <PropertyRef Name="PromosyonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPromOnay_tblUrun">
+          <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="1" />
+          <End Role="tblPromOnay" Type="Self.tblPromOnay" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblUrun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="tblPromOnay">
+              <PropertyRef Name="onayID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPromosyon_tblUrun1">
+          <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="0..1" />
+          <End Role="tblPromosyon" Type="Self.tblPromosyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUrun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="tblPromosyon">
+              <PropertyRef Name="urunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSepetDty_tblSepet">
+          <End Role="tblSepet" Type="Self.tblSepet" Multiplicity="0..1" />
+          <End Role="tblSepetDty" Type="Self.tblSepetDty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSepet">
+              <PropertyRef Name="sepetID" />
+              <PropertyRef Name="sptKullaniciID" />
+            </Principal>
+            <Dependent Role="tblSepetDty">
+              <PropertyRef Name="sepetID" />
+              <PropertyRef Name="kullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSiparisDetay_tblSepet">
+          <End Role="tblSepet" Type="Self.tblSepet" Multiplicity="0..1" />
+          <End Role="tblSiparisDetay" Type="Self.tblSiparisDetay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSepet">
+              <PropertyRef Name="sepetID" />
+              <PropertyRef Name="sptKullaniciID" />
+            </Principal>
+            <Dependent Role="tblSiparisDetay">
+              <PropertyRef Name="sepetID" />
+              <PropertyRef Name="kullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSepetDty_tblUrun">
+          <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="0..1" />
+          <End Role="tblSepetDty" Type="Self.tblSepetDty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUrun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="tblSepetDty">
+              <PropertyRef Name="urunId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUrun_tblStok">
+          <End Role="tblStok" Type="Self.tblStok" Multiplicity="0..1" />
+          <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStok">
+              <PropertyRef Name="stokID" />
+            </Principal>
+            <Dependent Role="tblUrun">
+              <PropertyRef Name="stokID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="cikolataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tblFavori" EntityType="Self.tblFavori" />
+          <EntitySet Name="tblFiyat" EntityType="Self.tblFiyat" />
+          <EntitySet Name="tblKategori" EntityType="Self.tblKategori" />
+          <EntitySet Name="tblKullanici" EntityType="Self.tblKullanici" />
+          <EntitySet Name="tblKullaniciRol" EntityType="Self.tblKullaniciRol" />
+          <EntitySet Name="tblMesaj" EntityType="Self.tblMesaj" />
+          <EntitySet Name="tblPromOnay" EntityType="Self.tblPromOnay" />
+          <EntitySet Name="tblPromosyon" EntityType="Self.tblPromosyon" />
+          <EntitySet Name="tblSepet" EntityType="Self.tblSepet" />
+          <EntitySet Name="tblSepetDty" EntityType="Self.tblSepetDty" />
+          <EntitySet Name="tblSiparisDetay" EntityType="Self.tblSiparisDetay" />
+          <EntitySet Name="tblStok" EntityType="Self.tblStok" />
+          <EntitySet Name="tblUrun" EntityType="Self.tblUrun" />
+          <AssociationSet Name="FK_tblFavori_tblKullanici" Association="Self.FK_tblFavori_tblKullanici">
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+            <End Role="tblFavori" EntitySet="tblFavori" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFavori_tblUrun" Association="Self.FK_tblFavori_tblUrun">
+            <End Role="tblUrun" EntitySet="tblUrun" />
+            <End Role="tblFavori" EntitySet="tblFavori" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFiyat_tblPromosyon1" Association="Self.FK_tblFiyat_tblPromosyon1">
+            <End Role="tblPromosyon" EntitySet="tblPromosyon" />
+            <End Role="tblFiyat" EntitySet="tblFiyat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUrun_tblUrun" Association="Self.FK_tblUrun_tblUrun">
+            <End Role="tblFiyat" EntitySet="tblFiyat" />
+            <End Role="tblUrun" EntitySet="tblUrun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPromosyon_tblUrun" Association="Self.FK_tblPromosyon_tblUrun">
+            <End Role="tblKategori" EntitySet="tblKategori" />
+            <End Role="tblPromosyon" EntitySet="tblPromosyon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUrun_tblKategori" Association="Self.FK_tblUrun_tblKategori">
+            <End Role="tblKategori" EntitySet="tblKategori" />
+            <End Role="tblUrun" EntitySet="tblUrun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblKullanici_tblKullaniciRol" Association="Self.FK_tblKullanici_tblKullaniciRol">
+            <End Role="tblKullaniciRol" EntitySet="tblKullaniciRol" />
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMesaj_tblKullanici" Association="Self.FK_tblMesaj_tblKullanici">
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+            <End Role="tblMesaj" EntitySet="tblMesaj" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPromOnay_tblKullanici" Association="Self.FK_tblPromOnay_tblKullanici">
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+            <End Role="tblPromOnay" EntitySet="tblPromOnay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSepet_tblKullanici" Association="Self.FK_tblSepet_tblKullanici">
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+            <End Role="tblSepet" EntitySet="tblSepet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUrun_tblKullanici" Association="Self.FK_tblUrun_tblKullanici">
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+            <End Role="tblUrun" EntitySet="tblUrun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMesaj_tblUrun" Association="Self.FK_tblMesaj_tblUrun">
+            <End Role="tblUrun" EntitySet="tblUrun" />
+            <End Role="tblMesaj" EntitySet="tblMesaj" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPromOnay_tblPromosyon" Association="Self.FK_tblPromOnay_tblPromosyon">
+            <End Role="tblPromosyon" EntitySet="tblPromosyon" />
+            <End Role="tblPromOnay" EntitySet="tblPromOnay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPromOnay_tblUrun" Association="Self.FK_tblPromOnay_tblUrun">
+            <End Role="tblUrun" EntitySet="tblUrun" />
+            <End Role="tblPromOnay" EntitySet="tblPromOnay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPromosyon_tblUrun1" Association="Self.FK_tblPromosyon_tblUrun1">
+            <End Role="tblUrun" EntitySet="tblUrun" />
+            <End Role="tblPromosyon" EntitySet="tblPromosyon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSepetDty_tblSepet" Association="Self.FK_tblSepetDty_tblSepet">
+            <End Role="tblSepet" EntitySet="tblSepet" />
+            <End Role="tblSepetDty" EntitySet="tblSepetDty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSiparisDetay_tblSepet" Association="Self.FK_tblSiparisDetay_tblSepet">
+            <End Role="tblSepet" EntitySet="tblSepet" />
+            <End Role="tblSiparisDetay" EntitySet="tblSiparisDetay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSepetDty_tblUrun" Association="Self.FK_tblSepetDty_tblUrun">
+            <End Role="tblUrun" EntitySet="tblUrun" />
+            <End Role="tblSepetDty" EntitySet="tblSepetDty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUrun_tblStok" Association="Self.FK_tblUrun_tblStok">
+            <End Role="tblStok" EntitySet="tblStok" />
+            <End Role="tblUrun" EntitySet="tblUrun" />
+          </AssociationSet>
+          <FunctionImport Name="sp_toplamSatilanUrun" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="sp_toplamUyeSayisi" ReturnType="Collection(Int32)" />
+          <AssociationSet Name="FK_tblKullanici_tblKullanici" Association="cikolataModel.FK_tblKullanici_tblKullanici">
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+            <End Role="tblKullanici1" EntitySet="tblKullanici" />
+          </AssociationSet>
+          <FunctionImport Name="sp_encoksatbesurun" ReturnType="Collection(cikolataModel.sp_encoksatbesurun_Result)" />
+          <FunctionImport Name="sp_encoksatisyapilankategori" ReturnType="Collection(cikolataModel.sp_encoksatisyapilankategori_Result)" />
+          <FunctionImport Name="sp_encoksepeteurunlerilkbes" ReturnType="Collection(cikolataModel.sp_encoksepeteurunlerilkbes_Result)" />
+          <FunctionImport Name="sp_gunluksatilanurunsayisi" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="sp_gunlukuyekayitsayisi" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="sp_haftaliksatilanurunsayisi" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="sp_haftalikuyekayitsayisi" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="sp_tumsatilanurunsayisi" ReturnType="Collection(Int32)" />
+        </EntityContainer>
+        <Association Name="FK_tblKullanici_tblKullanici">
+          <End Type="cikolataModel.tblKullanici" Role="tblKullanici" Multiplicity="1" />
+          <End Type="cikolataModel.tblKullanici" Role="tblKullanici1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullanici">
+              <PropertyRef Name="kullaniciID" />
+            </Principal>
+            <Dependent Role="tblKullanici1">
+              <PropertyRef Name="kullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_encoksatbesurun_Result">
+          <Property Type="String" Name="urunAd" Nullable="false" />
+          <Property Type="Int32" Name="kacadetsatildi" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_encoksatisyapilankategori_Result">
+          <Property Type="String" Name="kategoriAdi" Nullable="false" MaxLength="70" />
+          <Property Type="Int32" Name="satıskategori" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_encoksepeteurunlerilkbes_Result">
+          <Property Type="String" Name="urunAd" Nullable="false" />
+          <Property Type="Int32" Name="sepeteeklenen" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="cikolataModelStoreContainer" CdmEntityContainer="cikolataEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="cikolataModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFavori">
+            <EntityTypeMapping TypeName="cikolataModel.tblFavori">
+              <MappingFragment StoreEntitySet="tblFavori">
+                <ScalarProperty Name="favoriID" ColumnName="favoriID" />
+                <ScalarProperty Name="urunID" ColumnName="urunID" />
+                <ScalarProperty Name="kullaniciID" ColumnName="kullaniciID" />
+                <ScalarProperty Name="favoriDurumu" ColumnName="favoriDurumu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFiyat">
+            <EntityTypeMapping TypeName="cikolataModel.tblFiyat">
+              <MappingFragment StoreEntitySet="tblFiyat">
+                <ScalarProperty Name="fiyatID" ColumnName="fiyatID" />
+                <ScalarProperty Name="urunPromosyonID" ColumnName="urunPromosyonID" />
+                <ScalarProperty Name="alisFiyati" ColumnName="alisFiyati" />
+                <ScalarProperty Name="satisFiyati" ColumnName="satisFiyati" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblKategori">
+            <EntityTypeMapping TypeName="cikolataModel.tblKategori">
+              <MappingFragment StoreEntitySet="tblKategori">
+                <ScalarProperty Name="kategoriID" ColumnName="kategoriID" />
+                <ScalarProperty Name="kategoriAdi" ColumnName="kategoriAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblKullanici">
+            <EntityTypeMapping TypeName="cikolataModel.tblKullanici">
+              <MappingFragment StoreEntitySet="tblKullanici">
+                <ScalarProperty Name="kullaniciID" ColumnName="kullaniciID" />
+                <ScalarProperty Name="kullaniciRolID" ColumnName="kullaniciRolID" />
+                <ScalarProperty Name="kullaniciAdi" ColumnName="kullaniciAdi" />
+                <ScalarProperty Name="kullanciSoyad" ColumnName="kullanciSoyad" />
+                <ScalarProperty Name="kullaniciSifre" ColumnName="kullaniciSifre" />
+                <ScalarProperty Name="kullaniciKayitTarihi" ColumnName="kullaniciKayitTarihi" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblKullaniciRol">
+            <EntityTypeMapping TypeName="cikolataModel.tblKullaniciRol">
+              <MappingFragment StoreEntitySet="tblKullaniciRol">
+                <ScalarProperty Name="kullaniciRolID" ColumnName="kullaniciRolID" />
+                <ScalarProperty Name="kullaniciRolAdi" ColumnName="kullaniciRolAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMesaj">
+            <EntityTypeMapping TypeName="cikolataModel.tblMesaj">
+              <MappingFragment StoreEntitySet="tblMesaj">
+                <ScalarProperty Name="mesajID" ColumnName="mesajID" />
+                <ScalarProperty Name="kullaniciID" ColumnName="kullaniciID" />
+                <ScalarProperty Name="urunID" ColumnName="urunID" />
+                <ScalarProperty Name="saticiID" ColumnName="saticiID" />
+                <ScalarProperty Name="mesaj" ColumnName="mesaj" />
+                <ScalarProperty Name="mesajNo" ColumnName="mesajNo" />
+                <ScalarProperty Name="mesajSahibi" ColumnName="mesajSahibi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPromOnay">
+            <EntityTypeMapping TypeName="cikolataModel.tblPromOnay">
+              <MappingFragment StoreEntitySet="tblPromOnay">
+                <ScalarProperty Name="satisFiyat" ColumnName="satisFiyat" />
+                <ScalarProperty Name="onayID" ColumnName="onayID" />
+                <ScalarProperty Name="PromosyonId" ColumnName="PromosyonId" />
+                <ScalarProperty Name="saticiId" ColumnName="saticiId" />
+                <ScalarProperty Name="urunID" ColumnName="urunID" />
+                <ScalarProperty Name="onayDurumu" ColumnName="onayDurumu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPromosyon">
+            <EntityTypeMapping TypeName="cikolataModel.tblPromosyon">
+              <MappingFragment StoreEntitySet="tblPromosyon">
+                <ScalarProperty Name="promosyonID" ColumnName="promosyonID" />
+                <ScalarProperty Name="urunID" ColumnName="urunID" />
+                <ScalarProperty Name="promosyonAdi" ColumnName="promosyonAdi" />
+                <ScalarProperty Name="promosyonIndirimOrani" ColumnName="promosyonIndirimOrani" />
+                <ScalarProperty Name="baslamaTarihi" ColumnName="baslamaTarihi" />
+                <ScalarProperty Name="bitisTarihi" ColumnName="bitisTarihi" />
+                <ScalarProperty Name="promosyonResim" ColumnName="promosyonResim" />
+                <ScalarProperty Name="kategoriID" ColumnName="kategoriID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSepet">
+            <EntityTypeMapping TypeName="cikolataModel.tblSepet">
+              <MappingFragment StoreEntitySet="tblSepet">
+                <ScalarProperty Name="sepetID" ColumnName="sepetID" />
+                <ScalarProperty Name="sptKullaniciID" ColumnName="sptKullaniciID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSepetDty">
+            <EntityTypeMapping TypeName="cikolataModel.tblSepetDty">
+              <MappingFragment StoreEntitySet="tblSepetDty">
+                <ScalarProperty Name="adet" ColumnName="adet" />
+                <ScalarProperty Name="sepetDtyID" ColumnName="sepetDtyID" />
+                <ScalarProperty Name="sepetID" ColumnName="sepetID" />
+                <ScalarProperty Name="kullaniciID" ColumnName="kullaniciID" />
+                <ScalarProperty Name="urunId" ColumnName="urunId" />
+                <ScalarProperty Name="urunAdet" ColumnName="urunAdet" />
+                <ScalarProperty Name="topFiyat" ColumnName="topFiyat" />
+                <ScalarProperty Name="eklenmeTarihi" ColumnName="eklenmeTarihi" />
+                <ScalarProperty Name="sepetDurum" ColumnName="sepetDurum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSiparisDetay">
+            <EntityTypeMapping TypeName="cikolataModel.tblSiparisDetay">
+              <MappingFragment StoreEntitySet="tblSiparisDetay">
+                <ScalarProperty Name="siparisDtyID" ColumnName="siparisDtyID" />
+                <ScalarProperty Name="sepetID" ColumnName="sepetID" />
+                <ScalarProperty Name="kullaniciID" ColumnName="kullaniciID" />
+                <ScalarProperty Name="siparisTarihi" ColumnName="siparisTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStok">
+            <EntityTypeMapping TypeName="cikolataModel.tblStok">
+              <MappingFragment StoreEntitySet="tblStok">
+                <ScalarProperty Name="stokID" ColumnName="stokID" />
+                <ScalarProperty Name="stokMiktari" ColumnName="stokMiktari" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUrun">
+            <EntityTypeMapping TypeName="cikolataModel.tblUrun">
+              <MappingFragment StoreEntitySet="tblUrun">
+                <ScalarProperty Name="urunID" ColumnName="urunID" />
+                <ScalarProperty Name="saticiID" ColumnName="saticiID" />
+                <ScalarProperty Name="kategoriID" ColumnName="kategoriID" />
+                <ScalarProperty Name="fiyatID" ColumnName="fiyatID" />
+                <ScalarProperty Name="stokID" ColumnName="stokID" />
+                <ScalarProperty Name="urunAd" ColumnName="urunAd" />
+                <ScalarProperty Name="urunAciklama" ColumnName="urunAciklama" />
+                <ScalarProperty Name="urunEklemeTarihi" ColumnName="urunEklemeTarihi" />
+                <ScalarProperty Name="durumu" ColumnName="durumu" />
+                <ScalarProperty Name="resim" ColumnName="resim" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_toplamSatilanUrun" FunctionName="cikolataModel.Store.sp_toplamSatilanUrun" />
+          <FunctionImportMapping FunctionImportName="sp_toplamUyeSayisi" FunctionName="cikolataModel.Store.sp_toplamUyeSayisi" />
+          <FunctionImportMapping FunctionImportName="sp_encoksatbesurun" FunctionName="cikolataModel.Store.sp_encoksatbesurun">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="cikolataModel.sp_encoksatbesurun_Result">
+                <ScalarProperty Name="urunAd" ColumnName="urunAd" />
+                <ScalarProperty Name="kacadetsatildi" ColumnName="kacadetsatildi" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_encoksatisyapilankategori" FunctionName="cikolataModel.Store.sp_encoksatisyapilankategori">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="cikolataModel.sp_encoksatisyapilankategori_Result">
+                <ScalarProperty Name="kategoriAdi" ColumnName="kategoriAdi" />
+                <ScalarProperty Name="satıskategori" ColumnName="satıskategori" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_encoksepeteurunlerilkbes" FunctionName="cikolataModel.Store.sp_encoksepeteurunlerilkbes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="cikolataModel.sp_encoksepeteurunlerilkbes_Result">
+                <ScalarProperty Name="urunAd" ColumnName="urunAd" />
+                <ScalarProperty Name="sepeteeklenen" ColumnName="sepeteeklenen" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_gunluksatilanurunsayisi" FunctionName="cikolataModel.Store.sp_gunluksatilanurunsayisi" />
+          <FunctionImportMapping FunctionImportName="sp_gunlukuyekayitsayisi" FunctionName="cikolataModel.Store.sp_gunlukuyekayitsayisi" />
+          <FunctionImportMapping FunctionImportName="sp_haftaliksatilanurunsayisi" FunctionName="cikolataModel.Store.sp_haftaliksatilanurunsayisi" />
+          <FunctionImportMapping FunctionImportName="sp_haftalikuyekayitsayisi" FunctionName="cikolataModel.Store.sp_haftalikuyekayitsayisi" />
+          <FunctionImportMapping FunctionImportName="sp_tumsatilanurunsayisi" FunctionName="cikolataModel.Store.sp_tumsatilanurunsayisi" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

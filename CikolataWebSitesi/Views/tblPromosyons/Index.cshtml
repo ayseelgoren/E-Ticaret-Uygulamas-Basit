@@ -1,0 +1,113 @@
+﻿@model IEnumerable<CikolataWebSitesi.Models.tblPromosyon>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.promosyonAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.promosyonIndirimOrani)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.baslamaTarihi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bitisTarihi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.promosyonResim)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblKategori.kategoriAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblUrun.urunAd)
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Convert.ToInt32(Session["kullaniciRolId"]) == 3)
+    {
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.promosyonAdi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.promosyonIndirimOrani)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.baslamaTarihi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.bitisTarihi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.promosyonResim)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tblKategori.kategoriAdi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tblUrun.urunAd)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.promosyonID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.promosyonID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.promosyonID })
+                </td>
+            </tr>
+        }
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            if (item.tblUrun.saticiID == Convert.ToInt32(Session["kullaniciId"]))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.promosyonAdi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.promosyonIndirimOrani)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.baslamaTarihi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.bitisTarihi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.promosyonResim)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tblKategori.kategoriAdi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tblUrun.urunAd)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.promosyonID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.promosyonID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.promosyonID })
+                    </td>
+                </tr>
+            }
+        }
+    }
+
+
+</table>

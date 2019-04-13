@@ -1,0 +1,96 @@
+﻿@model IEnumerable<CikolataWebSitesi.Models.tblUrun>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div>
+    <button type="button" class="btn btn-outline-primary btn">  @Html.ActionLink("Ürün Ekle", "Create")</button>
+</div>
+<br />
+<div class="table-responsive table-responsive-data2">
+    <table class="table ">
+        <thead>
+            <tr>
+                <th>
+                    Satıcı
+                </th>
+                <th>
+                    Kategori
+                </th>
+                <th>
+                    Ürün Adı
+                </th>
+                <th>
+                    Ürün Açıklaması
+                </th>
+                <th>
+                    Ürün Eklenme Tarihi
+                </th>
+                <th>
+                    Stok Adet
+                </th>
+                <th>Resim </th>
+
+                <th>Güncelle</th>
+                <th>Detay</th>
+                <th>Sil</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tblKullanici.kullaniciAdi)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.kategoriID)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.urunAd)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.urunAciklama)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.urunEklemeTarihi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tblStok.stokMiktari)
+                    </td>
+
+                    <td>
+                        <img src="/Content/images/@item.resim" width="200" height="200" />
+                    </td>
+
+                    <td>
+                        <button class="item" data-toggle="tooltip" data-placement="top" title="">
+                            <i class="zmdi zmdi-edit">
+                                @Html.ActionLink("Güncelle", "Edit", new { id = item.urunID })
+                            </i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="item" data-toggle="tooltip" data-placement="top" title="">
+                            <i class=" zmdi zmdi-mail-send">
+                                @Html.ActionLink("Detay", "Details", new { id = item.urunID })
+                            </i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="item" data-toggle="tooltip" data-placement="top" title="">
+                            <i class="zmdi zmdi-delete">
+                                @Html.ActionLink("Sil", "Delete", new { id = item.urunID })
+                            </i>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

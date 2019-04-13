@@ -1,0 +1,31 @@
+﻿@model CikolataWebSitesi.Models.tblKategori
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div>
+    <div class="card-header">
+        <strong>Kategori Detay</strong> Sayfası
+    </div>
+    <br />
+    <dl class="dl-horizontal">
+        <dt>
+            <label for="text-input" class=" form-control-label">Kateogori Adı</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kategoriAdi)
+        </dd>
+
+    </dl>
+</div>
+<br />
+<hr />
+<p>
+    <button type="button" class="btn btn-outline-primary btn"> @Html.ActionLink("Güncelle", "Edit", new { id = Model.kategoriID }) </button>
+
+    <button type="button" class="btn btn-outline-primary btn">  @Html.ActionLink("Kategoriler", "Index")</button>
+</p>
+
+

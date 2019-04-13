@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CikolataWebSitesi.Models.tblMesaj>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SaticiLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.saticiID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mesaj)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mesajNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mesajSahibi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblKullanici.kullaniciAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblUrun.urunAd)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.saticiID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mesaj)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mesajNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mesajSahibi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblKullanici.kullaniciAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblUrun.urunAd)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.mesajID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.mesajID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.mesajID })
+        </td>
+    </tr>
+}
+
+</table>

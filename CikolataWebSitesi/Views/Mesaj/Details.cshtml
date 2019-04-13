@@ -1,0 +1,67 @@
+﻿@model CikolataWebSitesi.Models.tblMesaj
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_SaticiLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblMesaj</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.saticiID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.saticiID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mesaj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mesaj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mesajNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mesajNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mesajSahibi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mesajSahibi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblKullanici.kullaniciAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblKullanici.kullaniciAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblUrun.urunAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblUrun.urunAd)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.mesajID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,93 @@
+﻿@model IEnumerable<CikolataWebSitesi.Models.tblPromOnay>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/shared/_SaticiLayout.cshtml";
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.onayDurumu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.satisFiyat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblKullanici.kullaniciAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblPromosyon.promosyonAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblUrun.urunAd)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        var id = 12;
+        if (id == 12)
+        {
+            <tr>
+                @if (item.onayDurumu == false || item.onayDurumu == null)
+                {
+                    <td>
+                        @Html.ActionLink("Onayla", "Onay", "PromOnay", new { str = item.onayID }, new { @class = "delete" })
+                    </td>
+                }
+                else if (item.onayDurumu == true)
+                {
+                    <td>
+                        <label class="label label-success">ONAYLANDI</label>
+                    </td>
+                }
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.satisFiyat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tblKullanici.kullaniciAdi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tblPromosyon.promosyonAdi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tblUrun.urunAd)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.onayID })
+                </td>
+
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.onayDurumu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.satisFiyat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tblKullanici.kullaniciAdi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tblPromosyon.promosyonAdi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tblUrun.urunAd)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.onayID })
+                </td>
+
+            </tr>
+        }
+
+    }
+
+</table>

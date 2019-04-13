@@ -1,0 +1,108 @@
+﻿@model CikolataWebSitesi.Models.sepet
+
+@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/content/js/jquery-1.11.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        //ürün sayısını azaltan fonksiyon
+        $(".urunSil").click(function Urunsil() {
+            var uId = $(this).attr("name");
+            $.ajax({
+                type: "GET",
+                url: "/SepetDties/sepetUrunDusur",
+                data: { id: uId },
+                success: function myfunction() {
+                    $.ajax({
+                        type: "GET",
+                        url: "/SepetDties/Index",
+                        success: function (veri) {
+                            $(".table").html('');
+                            $(".table").html(veri);
+                        }
+
+                    });
+
+                },
+                error: function myfunction() {
+                    alert("hata");
+                }
+
+            });
+        });
+        //urun sayısını arttıran fonksiyon
+        $(".urunArttir").click(function sayiArttir() {
+            var uId = $(this).attr("name");
+            $.ajax({
+                type: "GET",
+                url: "/SepetDties/sepetUrunArttir",
+                data: { id: uId },
+                success: function myfunction() {
+                    $.ajax({
+                        type: "GET",
+                        url: "/SepetDties/Index",
+                        success: function (veri) {
+                            $(".table").html('');
+                            $(".table").html(veri);
+                        }
+                    });
+                }
+
+            });
+
+        });
+    });
+</script>
+
+
+<table class="table">
+    @if (Model != null)
+    {
+        foreach (var item in Model.Urunler)
+        {
+            <tr>
+                <td width="%25" height="%25"></td>
+                <td width="100px" height="100">
+                    <a><img src="/images/@Html.DisplayFor(modelItem=>item.Urun.resim)" width="150px" height="150px" /></a>
+                </td>
+                <td width="100px">
+                    <a class="name"><font color="#4d4dff" size="4">@Html.DisplayFor(modelItem => item.Urun.urunAd) </font></a>
+                    <br />
+
+                    <font size="2">Sipariş:Adet:</font>
+                    <a class="name"><font size="2">@Html.DisplayFor(modelItem => item.adet) </font> </a>
+
+                    <br />
+                    <font size="2"> Toplam Fiyat:</font><br />
+                    <a class="name"><font color="red" size="5"> @Html.DisplayFor(modelItem => item.tutar)</font> </a>
+                </td>
+                <td>
+                    @*ürünün sepetteki sayısını arttırma*@
+                    <a name="@item.Urun.urunID" class="urunArttir"><font color="#33ccff" size="4"><span class="glyphicon glyphicon glyphicon-hand-up" aria-hidden="true"></span></font></a><br />
+                    @*ürünün sayısını azaltma bir tane varsa çıkar*@
+
+                    <a class="urunSil" name="@item.Urun.urunID"><font color="#33ccff" size="4"><span class="glyphicon glyphicon glyphicon-hand-down" aria-hidden="true"></span></font></a><br />
+                </td>
+                <td>
+                    @*ürünFavoriye Gitcek*@
+                    <a href="/Kullanici/FavoriEkle/@item.Urun.urunID"><font color="6666ff" size="3"><span class="glyphicon glyphicon glyphicon-heart-empty" aria-hidden="true"></span></font></a><br />
+                    @* ürün gitcek*@
+                    <a href="/Urun/Detay/@item.Urun.urunID"><font color="6666ff" size="3"><span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true"></span></font></a><br />
+                </td>
+            </tr>
+        }
+    }
+    <tr>
+        <td width="%100"></td>
+        <td width="%50"></td>
+        <td width="300px">
+            <font size="4"> Ödenecek Tutar:</font><br />
+            <a class="name"><font color="red" size="6">@CikolataWebSitesi.Models.sepet.AktifSepet.toplamtutar</font> </a>
+        </td>
+    </tr>
+
+</table>
+
+

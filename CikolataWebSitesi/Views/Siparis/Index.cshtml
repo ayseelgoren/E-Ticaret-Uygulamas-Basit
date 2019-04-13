@@ -1,0 +1,41 @@
+﻿@model IEnumerable<CikolataWebSitesi.Models.tblSepetDty>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="title-info wow fadeInUp animated" data-wow-delay=".5s">
+    <h1 class="title">Sipariş <span> Detayı</span></h1>
+    </div>
+    <br />
+
+
+    <table class="table">
+        <tr>
+
+            <th>
+                <h1></h1>
+            </th>
+            <th>
+                <h1> </h1>
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    <h2>@Html.DisplayFor(modelItem => item.tblUrun.urunAd)</h2>
+                </td>
+                <td>
+                    <img src="~/Content/images/@Html.DisplayFor(modelItem => item.tblUrun.resim)" width="250" height="250"/ >
+                </td>
+                <td></td>
+            </tr>
+        }
+
+    </table>
+    <> </style:>
+
+
